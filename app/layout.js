@@ -13,9 +13,7 @@ export default function RootLayout({ children }) {
   return (
     <html className={inter.className} lang="en">
       <body className=" bg-cover bg-[url(../public/bg.jpg)]">
-        <header>
-          <Navbar />
-        </header>
+        <Navbar />
         {children}
       </body>
     </html>

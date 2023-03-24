@@ -2,11 +2,13 @@
 import Image from "next/image";
 import { Alert, Dropdown } from "flowbite-react";
 import { useState } from "react";
+import Development from "./components/Homepage/Development";
 export default function Home() {
   const [alert, setAlert] = useState(false);
   return (
-    <main className="w-full h-screen flefx flex-col px-4">
-      {alert && (
+    <>
+      <main className="w-full h-screen flefx flex-col px-4">
+        {/* {alert && (
         <div
           className="w-10/12 mx-auto my-2 p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
           role="alert"
@@ -22,7 +24,9 @@ export default function Home() {
         onClick={() => setAlert(!alert)}
       >
         Alert
-      </button>
-    </main>
+      </button> */}
+      </main>
+      <Development />
+    </>
   );
 }
