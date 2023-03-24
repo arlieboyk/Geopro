@@ -44,7 +44,9 @@ function Navbar() {
           {/* hamburger */}
           <div
             className="md:hidden space-y-1 mt-3 hover:scale-105 "
-            onClick={() => setSideBar(!Sidebar)}
+            onClick={() => {
+              setSideBar(!Sidebar), console.log("toggle");
+            }}
           >
             <p className="w-6 h-0.5  bg-gray-600"></p>
             <p className="w-6 h-0.5  bg-gray-600"></p>
@@ -52,7 +54,12 @@ function Navbar() {
           </div>
         </div>
       </nav>
-      <SideBar closeSideBar={() => setSideBar(!sideBar)} isOn={sideBar} />
+      <SideBar
+        closeSideBar={() => {
+          setSideBar(!sideBar);
+        }}
+        isOn={sideBar}
+      />
     </>
   );
 }
