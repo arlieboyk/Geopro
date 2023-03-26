@@ -1,27 +1,109 @@
 "use client";
+import {
+  PhoneIcon,
+  ChevronDownIcon,
+  ChevronDoubleRightIcon,
+  HomeIcon,
+} from "@heroicons/react/24/solid";
+import { Accordion } from "flowbite-react";
+
 type Props = {
-  isOn: boolean;
-  closeSideBar: () => void;
+  toggle: boolean;
+  closeOnSideBar: () => void;
 };
 import { useState } from "react";
-function SideBar({ isOn, closeSideBar }: Props) {
+function SideBar({ toggle, closeOnSideBar }: Props) {
   //   const [sideBar, setSideBar] = useState(isOn);
+
+  const content = document.getElementsByClassName("content");
+
+  for (let element of content) {
+    if (toggle) {
+      element.classList.toggle("pointer-events-none");
+      element.classList.toggle("fixed");
+    } else {
+      element.classList.toggle("pointer-events-none");
+      element.classList.toggle("fixed");
+    }
+  }
+
   return (
     <>
-      {isOn && (
-        <div
-          className={`h-screen flex flex-col ${
-            isOn ? "w-auto " : "w-0 "
-          } transition-all ease-linear px-4 bg-blue-200 `}
-        >
+      <div
+        className={` absolute    left-0 py-2 z-50 h-screen transition-transform ease-linear  -translate-x-1/2   md:translate-x-0 flex flex-col ${
+          toggle
+            ? "w-2/4 md:w-1/4 lg:w-1/6 translate-x-0   "
+            : "-translate-x-full"
+        } px-2 bg-slate-800 text-white`}
+      >
+        <div className="w-full relative h-12">
+          {/* {toggle &&
+         <p className='font-bold text-xl  text-center'>GEOPRO</p>
+          } */}
           <p
-            className="p-1  w-4 h-4 rounded-full hover:bg-white"
-            onClick={closeSideBar}
+            className=" flex items-center over  justify-center absolute  right-0 top-0 bottom-0 m-auto    w-8 h-8 rounded-full hover:bg-gray-900 bg-gray-700 hover:text-white"
+            onClick={closeOnSideBar}
           >
-            X
+            <ChevronDoubleRightIcon
+              className={` w-5 h-5transition-transform ${
+                toggle ? " -rotate-180" : "-rotate-360"
+              }`}
+            />
+            {/* brand name */}
           </p>
-          {/* menu */}
+        </div>
 
+        {/* menu */}
+        <div className="my-2 space-y-3 w-full justify-center items-center flex flex-col ">
+          {toggle ? (
+            <p className="menus">
+              <HomeIcon className="h-5 w-5 " /> Home
+            </p>
+          ) : (
+            <PhoneIcon className="w-10 h-10 p-2 rounded-full bg-gray-700 text-slate-200" />
+          )}
+          {toggle ? (
+            <p className="menus">
+              <HomeIcon className="h-5 w-5 " /> Home
+            </p>
+          ) : (
+            <PhoneIcon className="w-10 h-10 p-2 rounded-full bg-gray-700 text-slate-200" />
+          )}{" "}
+          {toggle ? (
+            <p className="menus">
+              <HomeIcon className="h-5 w-5 " /> Home
+            </p>
+          ) : (
+            <PhoneIcon className="w-10 h-10 p-2 rounded-full  bg-gray-700 text-slate-200" />
+          )}
+          <details
+            className={` ${
+              toggle ? "block" : "hidden"
+            }  w-full px-3 py-1 shadow-sm `}
+          >
+            <summary className="list-none">
+              More <ChevronDownIcon className="w-4 h-4  inline font-bold" />
+            </summary>
+            <p className="boder-b hover:bg-blue-300">asdfasdfadfadf</p>
+            <p>asdfasdfadfadf</p>
+            <p>asdfasdfadfadf</p>
+            <details>
+              <summary>asdf</summary>
+
+              <p>asdfasdfadfadf</p>
+              <p>asdfasdfadfadf</p>
+            </details>
+          </details>
+          {toggle ? (
+            <p className="w-full  hover:bg-slate-200 hover:text-slate-600 hover:font-bold rounded-md px-4 py-2">
+              Home
+            </p>
+          ) : (
+            <PhoneIcon className="w-10 h-10 p-2 rounded-full  bg-gray-700 text-slate-200" />
+          )}
+        </div>
+
+        {/* {toggle && (
           <aside
             id="default-sidebar"
             className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
@@ -183,8 +265,8 @@ function SideBar({ isOn, closeSideBar }: Props) {
               </ul>
             </div>
           </aside>
-        </div>
-      )}
+        )} */}
+      </div>
     </>
   );
 }

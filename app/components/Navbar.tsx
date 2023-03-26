@@ -62,10 +62,10 @@ function Navbar() {
         </div>
       </nav>
       <SideBar
-        closeSideBar={() => {
+        closeOnSideBar={() => {
           setSideBar(!sideBar);
         }}
-        isOn={sideBar}
+        toggle={sideBar}
       />
     </header>
   );
