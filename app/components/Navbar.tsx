@@ -32,7 +32,7 @@ function Navbar() {
         </div>
       </div> */}
 
-        <div className="flex flex-col items-end lg:hidden">
+        <div className="flex flex-col items-end space-y-3 lg:hidden">
           <div className=" flex xl:hidden  items-center space-x-4 text-gray-600">
             <PhoneIcon className="w-4 h-4 hover:text-black" />
             <p className="hover:text-black hover:scale-105 text-xs">
@@ -43,12 +43,12 @@ function Navbar() {
           </div>
           {/* hamburger */}
           <div
-            className="md:hidden space-y-1 mt-3 hover:scale-105 "
+            className="md:hidden space-y-1  hover:scale-105 "
             onClick={() => setSideBar(!Sidebar)}
           >
-            <p className="w-6 h-0.5  bg-gray-600"></p>
-            <p className="w-6 h-0.5  bg-gray-600"></p>
-            <p className="w-6 h-0.5  bg-gray-600"></p>
+            <p className="w-6 h-0.5 rounded-xl bg-gray-600"></p>
+            <p className="w-6 h-0.5 rounded-xl bg-gray-600"></p>
+            <p className="w-6 h-0.5 rounded-xl bg-gray-600"></p>
           </div>
         </div>
       </nav>
