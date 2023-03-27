@@ -28,35 +28,32 @@ function SideBar({ sidebar, toggleSideBar, hideSideBar, ousideClick }: Props) {
   }
 
   /* detect outside sidebar */
-  const refOne = useRef(null);
-  useEffect(() => {
-    document.addEventListener("click", handleClickOutside, true);
-  }, []);
+  // const refOne = useRef(null);
+  // useEffect(() => {
+  //   document.addEventListener("click", handleClickOutside, true);
+  // }, []);
 
-  const handleClickOutside = (e: any) => {
-    if (e.target !== null) {
-      if (!refOne.current.contains(e.target)) {
-        console.log("clickd ousdie sidebat");
-        ousideClick();
-      } else {
-        console.log("clicked inside");
-      }
-    }
-  };
+  // const handleClickOutside = (e: any) => {
+  //   if (e.target !== null) {
+  //     if (!refOne.current.contains(e.target)) {
+  //       console.log("clickd ousdie sidebat");
+  //       ousideClick();
+  //     } else {
+  //       console.log("clicked inside");
+  //     }
+  //   }
+  // };
   return (
     <>
       <div
-        ref={refOne}
-        className={` fixed   left-0 py-2 z-50 h-screen transition-all ease-linear  -translate-x-full   md:translate-x-0 flex flex-col ${
+        // ref={refOne}
+        className={`fixed left-0 py-2 h-screen transition-all ease-linear  -translate-x-full  flex flex-col ${
           sidebar
             ? " translate-x-0 w-2/4 sm:w-1/3 md:w-1/4 lg:w-1/6   "
             : "-translate-x-full"
         } px-2 bg-opacity-90 bg-slate-800 text-white`}
       >
         <div className="w-full relative h-12">
-          {/* {toggle &&
-         <p className='font-bold text-xl  text-center'>GEOPRO</p>
-          } */}
           <p
             className={` flex items-center   justify-center absolute  right-0 ${
               sidebar ? "" : "left-0"
@@ -84,9 +81,9 @@ function SideBar({ sidebar, toggleSideBar, hideSideBar, ousideClick }: Props) {
           )}
 
           {sidebar ? (
-            <p className="menus">
-              <HomeIcon className="h-5 w-5 " /> Home
-            </p>
+            <Link href={"/services"} className="menus">
+              <WrenchIcon className="h-5 w-5 " /> Services
+            </Link>
           ) : (
             <PhoneIcon className="menus-icon" />
           )}

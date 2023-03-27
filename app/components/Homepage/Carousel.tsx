@@ -1,10 +1,55 @@
+"use client";
+import { useState } from "react";
 import { Dropdown } from "flowbite-react";
 import { Carousel } from "flowbite-react";
+import { ArrowDownLeftIcon } from "@heroicons/react/24/solid";
+export default function CarouselSection() {
+  const [isButtonShown, setButton] = useState(false);
 
-const Carousel1 = () => {
-  <div className="z-50 text-center flex flex-col justify-center items-center">
-    <h1 className="w-20 h-20 bg-slate-200">arlie</h1>
-  </div>;
-};
-
-export default Carousel1;
+  // onmouseover = (event) => {};
+  return (
+    <section className="relative top-0 w-screen h-screen left-0 right-0 mx-auto">
+      <div className="w-full h-full">
+        <Carousel className="">
+          <div className="flex flex-col text-center bg-slate-800 bg-opacity-50 text-white h-full items-center justify-center  dark:bg-gray-700 dark:text-white">
+            <h2 className="text-3xl font-bold">Geopro Global Solutions</h2>
+            <h1 className="text-4xl font-bold">
+              Enterprise Resource Planning (ERP)
+            </h1>
+            <p>
+              Our ERP Services are suitable for companies that require
+              implementation of modern technologies to run their business
+              effectively.
+              <br /> We build, customize, and ingrate complex software solutions
+              and business applications.
+            </p>
+          </div>
+          <div className="flex flex-col text-center bg-slate-800 bg-opacity-50 text-white h-full items-center justify-center  dark:bg-gray-700 dark:text-white">
+            <h2 className="text-3xl font-bold">Geopro Global Solutions</h2>
+            <h1 className="text-4xl font-bold">
+              Enterprise Resource Planning (ERP)
+            </h1>
+            <p>
+              Our ERP Services are suitable for companies that require
+              implementation of modern technologies to run their business
+              effectively. We build, customize, and ingrate complex software
+              solutions and business applications.
+            </p>
+          </div>
+          <div className="flex flex-col text-center bg-slate-800 bg-opacity-50 text-white h-full items-center justify-center  dark:bg-gray-700 dark:text-white">
+            <h2 className="text-3xl font-bold">Geopro Global Solutions</h2>
+            <h1 className="text-4xl font-bold">
+              Enterprise Resource Planning (ERP)
+            </h1>
+            <p>
+              Our ERP Services are suitable for companies that require
+              implementation of modern technologies to run their business
+              effectively. We build, customize, and ingrate complex software
+              solutions and business applications.
+            </p>
+          </div>
+        </Carousel>
+      </div>
+    </section>
+  );
+}

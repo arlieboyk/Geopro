@@ -19,7 +19,7 @@ function Navbar() {
     setSideBar(!sideBar);
   };
   return (
-    <header className="sticky top-0 z-10  backdrop-filter backdrop-blur-lg">
+    <header className="sticky top-0 z-10 bg-slate-800 bg-opacity-50  backdrop-filter backdrop-blur-lg">
       {search ? (
         <div className={` ${search ? "block" : "hidden"}  w-screen `}>
           <Search toggleSearch={() => setSearch(!search)} />
@@ -30,7 +30,7 @@ function Navbar() {
             <Image src={logo} alt="logo" width={80} height={80} />
           </Link>
           <div className="flex flex-col justify-center items-end  ">
-            <div className=" flex justify-center  items-center space-x-4 text-gray-600">
+            <div className=" flex justify-center  items-center space-x-4 text-gray-300">
               <PhoneIcon className="w-4 h-4 hover:text-black" />
               <p className="hover:text-black hover:scale-105 text-xs">
                 (045) 499-8151
@@ -42,9 +42,9 @@ function Navbar() {
               />
             </div>
             {/* icons */}
-            <div className="flex space-x-4 items-center mt-3 justify-center">
+            <div className="flex space-x-4 items-center mt-3 justify-center text-gray-300">
               <a href="https://www.facebook.com/geoproglobalPH" target="_blank">
-                <AiFillFacebook className="w-6 h-6 hover:scale-105" />
+                <AiFillFacebook className="w-6 h-6  hover:scale-105" />
               </a>
               <a
                 href="https://www.linkedin.com/company/geopro-global-solutions-inc"
@@ -54,14 +54,14 @@ function Navbar() {
               </a>
               {/* hamburger */}
               <button
-                className=" space-y-1 hover:scale-105 lg:hidden "
+                className=" space-y-1 hover:scale-105"
                 onClick={() => {
                   setSideBar(!sideBar), console.log("toggle");
                 }}
               >
-                <p className="w-6 h-0.5  bg-gray-600"></p>
-                <p className="w-6 h-0.5  bg-gray-600"></p>
-                <p className="w-6 h-0.5  bg-gray-600"></p>
+                <p className="w-6 h-0.5  bg-gray-300"></p>
+                <p className="w-6 h-0.5  bg-gray-300"></p>
+                <p className="w-6 h-0.5  bg-gray-300"></p>
               </button>
             </div>
           </div>

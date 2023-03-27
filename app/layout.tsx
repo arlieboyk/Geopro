@@ -1,7 +1,7 @@
 import "./globals.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Inter } from "next/font/google";
-
+import SideBar from "./components/Homepage/SideBar";
 import Navbar from "./components/Navbar";
 export const metadata = {
   title: "Geopro",
@@ -9,12 +9,17 @@ export const metadata = {
 };
 const inter = Inter({ subsets: ["latin"] });
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html className={inter.className} lang="en">
-      <body className="bg-cover bg-scroll bg-no-repeat bg-center bg-[url(../public/bg.jpg)]">
+      <body className="bg-cover bg-fixed bg-no-repeat bg-[url(../public/bg.jpg)]">
         <Navbar />
-        <main className="content">{children}</main>
+
+        <main className="content  absolute ">{children}</main>
       </body>
     </html>
   );
