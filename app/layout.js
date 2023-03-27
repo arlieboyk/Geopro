@@ -12,9 +12,9 @@ const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({ children }) {
   return (
     <html className={inter.className} lang="en">
-      <body className=" bg-cover bg-[url(../public/bg.jpg)]">
+      <body className="bg-cover bg-scroll bg-no-repeat bg-center bg-[url(../public/bg.jpg)]">
         <Navbar />
-        {children}
+        <main className="content">{children}</main>
       </body>
     </html>
   );
