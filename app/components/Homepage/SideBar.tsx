@@ -20,9 +20,8 @@ function SideBar({ sidebar, toggleSideBar, hideSideBar, ousideClick }: Props) {
   const content = [document.getElementById("content")];
 
   for (let element of content) {
-    if (sidebar === true) {
+    if (sidebar) {
       element.classList.toggle("pointer-events-none");
-      element.classList.toggle("fixed");
     } else {
     }
   }
@@ -47,7 +46,7 @@ function SideBar({ sidebar, toggleSideBar, hideSideBar, ousideClick }: Props) {
     <>
       <div
         // ref={refOne}
-        className={`fixed left-0 py-2  h-screen transition-all ease-linear  -translate-x-full  flex flex-col ${
+        className={`absolute top-0 left-0 py-2  h-screen transition-all ease-linear  -translate-x-full  flex flex-col ${
           sidebar
             ? " translate-x-0 w-2/4 sm:w-1/3 md:w-1/4 lg:w-1/6   "
             : "-translate-x-full"

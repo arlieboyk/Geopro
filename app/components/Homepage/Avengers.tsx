@@ -1,4 +1,5 @@
 import React from "react";
+import { AiFillFacebook, AiFillLinkedin } from "react-icons/ai";
 
 const avengers = [
   {
@@ -95,20 +96,27 @@ const avengers = [
 function Avengers() {
   return (
     <section className="py-12 px-4 flex flex-col items-center justify-center text-black bg-white">
-      <h1 className="text-3xl my-16">Meet Geopro Avengers</h1>
-      <div className="grid gap-y-16 gap-x-6 grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 w-full md:2/3 lg:w-2/3   ">
+      <h1 className="text-3xl my-16 text-[#0088cc] font-bold ">
+        Meet Geopro Avengers Team
+      </h1>
+      <div className="bg-gray-100  grid mx-auto gap-y-16 gap-x-6 grid-cols-1 sm:grid-cols-2   lg:grid-cols-3 xl:grid-cols-4 w-full lg:w-2/3  ">
+        {/* cards */}
         {avengers.map((employee) => (
           <div
             key={employee.name}
-            className="  flex flex-col justify-center items-center  text-center bg-white shadow w-full h-[15rem] "
+            className=" relative flex flex-col justify-center items-center border-t-4 border-[#0088cc] text-center bg-white shadow w-full md:w-11/12 h-[15rem] rounded  "
           >
             <img
               src={employee.image}
-              className="relative left-0 right-0 bottom-[3rem] hover:scale-105 mx-auto w-24 h-24 border-2 border-slate-700 rounded-full"
+              className="absolute left-0 right-0 bottom-[12rem] hover:scale-105 mx-auto w-24 h-24 border-2 border-[#0088cc] rounded-full"
             />
-            <p className="font-semibold"> {employee.name}</p>
+            <p className="font-semibold text-[#095ca4]"> {employee.name}</p>
 
-            <p className=" opacity-80"> {employee.position}</p>
+            <p className=" text-gray-500"> {employee.position}</p>
+            <div>
+              <AiFillFacebook className="w-6 h-6 inline-block text-[#0088cc] hover:scale-105" />
+              <AiFillLinkedin className="w-6 h-6 inline-block text-[#0088cc] hover:scale-105" />
+            </div>
           </div>
         ))}
       </div>

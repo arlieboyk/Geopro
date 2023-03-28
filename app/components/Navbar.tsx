@@ -19,18 +19,20 @@ function Navbar() {
     setSideBar(!sideBar);
   };
   return (
-    <header className="sticky top-0 z-10  bg-opacity-50  backdrop-filter backdrop-blur-lg">
+    <header className="sticky  top-0 z-10  bg-opacity-50  backdrop-filter backdrop-blur-lg">
       {search ? (
         <div className={` ${search ? "block" : "hidden"}  w-screen `}>
           <Search toggleSearch={() => setSearch(!search)} />
         </div>
       ) : (
-        <nav className={`flex justify-between items-center  py-3 px-4  `}>
+        <nav
+          className={`flex justify-between items-center text-gray-600 py-3 px-4  `}
+        >
           <Link href={"/"}>
             <Image src={logo} alt="logo" width={80} height={80} />
           </Link>
           <div className="flex flex-col justify-center items-end  ">
-            <div className=" flex justify-center  items-center space-x-4 text-gray-300">
+            <div className=" flex justify-center  items-center space-x-4 ">
               <PhoneIcon className="w-4 h-4 hover:text-black" />
               <p className="hover:text-black hover:scale-105 text-xs">
                 (045) 499-8151
@@ -42,7 +44,7 @@ function Navbar() {
               />
             </div>
             {/* icons */}
-            <div className="flex space-x-4 items-center mt-3 justify-center text-gray-300">
+            <div className="flex space-x-4 items-center mt-3 justify-center">
               <a href="https://www.facebook.com/geoproglobalPH" target="_blank">
                 <AiFillFacebook className="w-6 h-6  hover:scale-105" />
               </a>
@@ -59,9 +61,9 @@ function Navbar() {
                   setSideBar(!sideBar), console.log("toggle");
                 }}
               >
-                <p className="w-6 h-0.5  bg-gray-300"></p>
-                <p className="w-6 h-0.5  bg-gray-300"></p>
-                <p className="w-6 h-0.5  bg-gray-300"></p>
+                <p className="w-6 h-0.5  bg-gray-600"></p>
+                <p className="w-6 h-0.5  bg-gray-600"></p>
+                <p className="w-6 h-0.5  bg-gray-600"></p>
               </button>
             </div>
           </div>

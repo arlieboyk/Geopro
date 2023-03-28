@@ -21,10 +21,15 @@
   opacity: 0;
   transition:all;
   transform: translate(100px);
-  transition: 150ms;
+  transition: 1s;
 }
 
 .show{
   opacity: 1;
   transform: translate(0);
+}
+
+.cards{
+  @apply h-44 w-1/2 px-5 rounded-sm shadow text-black font-bold   flex flex-col items-center justify-center
+ 
 }

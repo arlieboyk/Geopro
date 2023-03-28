@@ -11,10 +11,10 @@ function Search({ toggleSearch }: Props) {
         <input
           type="text"
           placeholder="Search..."
-          className="w-10/12 text-gray-700 font-semibold focus:text-gray-200 rounded-sm border-none  bg-transparent focus:ring-0  focus:outline-0"
+          className="w-10/12 text-gray-700 font-semibold focus:text-gray-600 rounded-sm border-none  bg-transparent focus:ring-0  focus:outline-0"
         />
         <AiFillCloseSquare
-          className="w-6 h-6 cursor-pointer text-slate-400 hover:scale-105"
+          className="w-6 h-6 cursor-pointer text-gray-600 hover:scale-105"
           onClick={toggleSearch}
         />
       </div>
