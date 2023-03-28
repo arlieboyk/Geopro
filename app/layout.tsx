@@ -15,12 +15,10 @@ export default function RootLayout({
 }) {
   return (
     <html className={inter.className} lang="en">
-      <body className="bg-cover bg-center bg-fixed bg-no-repeat bg-[url(../public/bg.jpg)]">
+      <body className="bg-cover bg-fixed bg-no-repeat bg-[url(../public/bg.jpg)] relative">
         <Navbar />
 
-        <main id="content" className="relative ">
-          {children}
-        </main>
+        <main id="content">{children}</main>
       </body>
     </html>
   );

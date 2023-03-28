@@ -1,5 +1,5 @@
-import { Enriqueta } from "next/font/google";
 import React from "react";
+import { Carousel } from "flowbite-react";
 
 function Development() {
   const target = document.querySelectorAll(".text-section");
@@ -21,13 +21,27 @@ function Development() {
   });
 
   return (
-    <section className=" h-[30rem] w-full  items-center justify-center flex flex-col bg-white">
-      <div className="space-y-16 py-6 text-center text-black text-xl font-bold">
-        <h1 className="text-section  ">Mobile Application Development</h1>
-        <h1 className="text-section">Payment Gateway</h1>
-        <h1 className="text-section">Desktop Software Development</h1>
-        <h1 className="text-section">Web Application Development</h1>
-      </div>
+    <section className=" h-screen w-full mt-26 items-center justify-center flex flex-col bg-white">
+      <Carousel className="">
+        <div className="cards   ">
+          <h1 className="text-section text-3xl   ">
+            Mobile Application Development
+          </h1>
+        </div>
+        <div className="cards  ">
+          <h1 className="text-section text-3xl ">Payment Gateway</h1>
+        </div>
+        <div className="cards  ">
+          <h1 className="text-section text-3xl ">
+            Desktop Software Development
+          </h1>
+        </div>
+        <div className="cards  ">
+          <h1 className="text-section text-3xl ">
+            Web Application Development
+          </h1>
+        </div>
+      </Carousel>
     </section>
   );
 }
