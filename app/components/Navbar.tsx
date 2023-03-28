@@ -19,7 +19,7 @@ function Navbar() {
     setSideBar(!sideBar);
   };
   return (
-    <header className="sticky top-0 z-10 bg-slate-800 bg-opacity-50  backdrop-filter backdrop-blur-lg">
+    <header className="sticky top-0 z-10  bg-opacity-50  backdrop-filter backdrop-blur-lg">
       {search ? (
         <div className={` ${search ? "block" : "hidden"}  w-screen `}>
           <Search toggleSearch={() => setSearch(!search)} />

@@ -1,7 +1,6 @@
 import "./globals.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Inter } from "next/font/google";
-import SideBar from "./components/Homepage/SideBar";
 import Navbar from "./components/Navbar";
 export const metadata = {
   title: "Geopro",
@@ -16,10 +15,12 @@ export default function RootLayout({
 }) {
   return (
     <html className={inter.className} lang="en">
-      <body className="bg-cover bg-fixed bg-no-repeat bg-[url(../public/bg.jpg)]">
+      <body className="bg-cover bg-center bg-fixed bg-no-repeat bg-[url(../public/bg.jpg)]">
         <Navbar />
 
-        <main className="content  absolute ">{children}</main>
+        <main id="content" className="relative ">
+          {children}
+        </main>
       </body>
     </html>
   );

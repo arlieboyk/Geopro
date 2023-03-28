@@ -17,12 +17,12 @@ type Props = {
 
 function SideBar({ sidebar, toggleSideBar, hideSideBar, ousideClick }: Props) {
   //   const [sideBar, setSideBar] = useState(isOn);
-  const content = document.getElementsByClassName("content");
+  const content = [document.getElementById("content")];
 
   for (let element of content) {
     if (sidebar === true) {
       element.classList.toggle("pointer-events-none");
-      element.classList.toggle("overflow-y-hidden");
+      element.classList.toggle("fixed");
     } else {
     }
   }
@@ -47,7 +47,7 @@ function SideBar({ sidebar, toggleSideBar, hideSideBar, ousideClick }: Props) {
     <>
       <div
         // ref={refOne}
-        className={`fixed left-0 py-2 h-screen transition-all ease-linear  -translate-x-full  flex flex-col ${
+        className={`fixed left-0 py-2  h-screen transition-all ease-linear  -translate-x-full  flex flex-col ${
           sidebar
             ? " translate-x-0 w-2/4 sm:w-1/3 md:w-1/4 lg:w-1/6   "
             : "-translate-x-full"
