@@ -3,88 +3,86 @@ import { Metadata } from "next";
 import { useEffect, useState } from "react";
 import getAllData from "../../lib/getAllData";
 import GetData from "../components/Contacts/GetData";
-interface Data {
+// interface Data {
+//   id: number;
+//   uid: string;
+//   name: string;
+//   fname: string;
+//   lname: string;
+//   number: number;
+//   eaddress: string;
+//   birthday: string;
+//   username: string;
+//   password: string;
+//   confirmpassword: string;
+// }
+// interface ApiData {
+//   data: Data[];
+// }
+
+interface User {
   id: number;
-  uid: string;
-  fname: string;
-  lname: string;
-  number: number;
-  eaddress: string;
-  birthday: string;
+  name: string;
   username: string;
-  password: string;
-  confirmpassword: string;
+  email: string;
+  address: {
+    street: string;
+    suite: string;
+    city: string;
+    zipcode: string;
+    geo: {
+      lat: string;
+      lng: string;
+    };
+  };
+  phone: string;
+  website: string;
+  company: {
+    name: string;
+    catchPhrase: string;
+    bs: string;
+  };
 }
 
 function Contacts() {
-  const [data, setData] = useState<Data[]>(null);
-  const [isLoading, setLoading] = useState(false);
+  const [data, setData] = useState<User[] | null>(null);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
+      // setLoading(true);
       const res = await fetch("/api/getData", {
-        method: "GET",
-      });
+        method: "POST",
+      })
+        .then((response) => response.json())
+        .then((json) => setData(json));
 
-      const data = await res.json();
-      return data;
+      // const data = await res.json();
+      // setData(data);
+      // setLoading(false);
     };
-    setLoading(true);
-    // fetchData()
-    //   .then((data) => {
-    //     setData(data);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
-    // const res: any = fetchData();
-    // // console.log(res);
-    // const entries = Object.entries(res);
-    // console.log("data ", entries);
-    // setLoading(false);
+
+    fetchData();
   }, []);
-  //#region
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const res = await fetch("/api/getData", {
-  //       method: "GET",
-  //     });
 
-  //     const data = await res.json();
-  //     return data;
-  //   };
-  //   const res: any = fetchData();
-  //   console.log("res", res);
-  //   setData(res);
-  //   console.log("data ", data);
-  // }, []);
+  useEffect(() => {
+    console.log("data ", typeof data);
+    console.log("content ", data);
+  }, [data]);
 
-  //#endregion
+  // if (loading) {
+  //   return <p>Loading data...</p>;
+  // }
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   fetch("/api/getData")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setData(data);
-  //       setLoading(false);
-  //     });
-  // }, []);
-
-  if (isLoading) return <p>Loading...</p>;
-  if (!data) return <p>No profile data</p>;
   return (
     <div>
-      {/* {Array.isArray(data) &&
-        data.map((el) => <div key={el.id}>{el.birthday}</div>)} */}
-      {/* {data.forEach((el) => (
-        <>
-        <h1>{el.fname}</h1>
-        <h1>{el.lname}</h1>
-        </>
-      ))} */}
-      {/* {data[0].confirmpassword} */}
-
-      {/* <GetData/> */}
+      {data?.map((user) => (
+        <div key={user.id}>
+          <h2>{user.name}</h2>
+          <p>Username: {user.username}</p>
+          <p>Email: {user.email}</p>
+        </div>
+      ))}
     </div>
   );
 }

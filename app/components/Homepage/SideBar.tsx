@@ -19,12 +19,15 @@ function SideBar({ sidebar, toggleSideBar, hideSideBar, ousideClick }: Props) {
   //   const [sideBar, setSideBar] = useState(isOn);
   const content = [document.getElementById("content")];
 
-  for (let element of content) {
-    if (sidebar) {
-      element.classList.toggle("pointer-events-none");
-    } else {
+  useEffect(() => {
+    for (let element of content) {
+      if (sidebar) {
+        element?.classList.add("pointer-events-none");
+      } else {
+        element?.classList.remove("pointer-events-none");
+      }
     }
-  }
+  }, [sidebar]);
 
   /* detect outside sidebar */
   // const refOne = useRef(null);
