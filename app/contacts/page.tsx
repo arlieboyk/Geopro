@@ -41,26 +41,32 @@ function Contacts() {
 
   return (
     <>
-      <section className="w-full h-full overflow-x-hidden">
-        <table className="w-full md:w-2/3 my-6  overflow-auto backdrop-blur-lg  backdrop-filter  mx-auto ">
+      <section className="h-full w-full overflow-x-hidden">
+        <table className="my-6 mx-auto w-full  overflow-auto backdrop-blur-lg  backdrop-filter  md:w-2/3 ">
           <thead className="mb-6">
-            <tr className="w-full flex font-bold justify-between p-4">
+            <tr className="flex w-full justify-between p-4 font-bold">
               <th>Id</th>
               <th>Name</th>
               <th>Email</th>
             </tr>
           </thead>
-          {user.map((el) => (
-            <tbody key={el.id}>
-              <Link href={`contacts/${el.id}`}>
-                <tr className="flex justify-between hover:scale-105  py-1 px-4 text-black font-semibold">
-                  <td>{el.id}</td>
-                  <td>{el.name}</td>
-                  <td>{el.email}</td>
-                </tr>
-              </Link>
-            </tbody>
-          ))}
+          {user ? (
+            user.map((el) => (
+              <tbody key={el.id}>
+                <Link href={`contacts/${el.id}`}>
+                  <tr className="flex justify-between py-1  px-4 font-semibold text-black hover:scale-105">
+                    <td>{el.id}</td>
+                    <td>{el.name}</td>
+                    <td>{el.email}</td>
+                  </tr>
+                </Link>
+              </tbody>
+            ))
+          ) : (
+            <div className="text-center text-3xl font-bold">
+              Loading data...
+            </div>
+          )}
         </table>
       </section>
     </>
