@@ -1,6 +1,6 @@
 import React from "react";
 import { Carousel } from "flowbite-react";
-
+import Wave from "react-wavify";
 function Development() {
   const target = document.querySelectorAll(".text-section");
 
@@ -21,8 +21,19 @@ function Development() {
   });
 
   return (
-    <section className=" h-screen w-full mt-26 items-center justify-center flex flex-col bg-white">
-      <Carousel className="">
+    <section className=" mt-26 flex h-[40rem] w-full flex-col items-center justify-center bg-white">
+      <Wave
+        fill="#0088cc"
+        paused={false}
+        options={{
+          height: 50,
+          amplitude: 20,
+          speed: 0.15,
+          points: 3,
+        }}
+        className=" rotate-180 "
+      />
+      <Carousel className="h-full">
         <div className="cards   ">
           <h1 className="text-section text-3xl   ">
             Mobile Application Development
@@ -42,6 +53,16 @@ function Development() {
           </h1>
         </div>
       </Carousel>
+      <Wave
+        fill="#0088cc"
+        paused={false}
+        options={{
+          height: 50,
+          amplitude: 20,
+          speed: 0.15,
+          points: 3,
+        }}
+      />
     </section>
   );
 }

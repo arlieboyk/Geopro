@@ -9,8 +9,8 @@ export default function CarouselSection() {
   // onmouseover = (event) => {};
   return (
     <section className="relative  ">
-      <Carousel className="h-screen w-full">
-        <div className="flex flex-col text-center h-full items-center justify-center  dark:bg-gray-700 dark:text-white">
+      <Carousel className="text-gray- h-screen w-full  text-gray-200">
+        <div className="flex w-full flex-col items-center justify-center px-2 text-center dark:bg-gray-700 dark:text-white">
           <h2 className="text-3xl font-bold">Geopro Global Solutions</h2>
           <h1 className="text-4xl font-bold">
             Enterprise Resource Planning (ERP)
@@ -23,11 +23,11 @@ export default function CarouselSection() {
             and business applications.
           </p>
         </div>
-        <div className="flex flex-col text-cente bg-opacity-50 h-full items-center justify-center  dark:bg-gray-700 dark:text-white">
+        <div className="text-cente flex h-full flex-col items-center justify-center bg-opacity-50 px-2 text-center  dark:bg-gray-700 dark:text-white">
           <h2 className="text-3xl">-Mobile-</h2>
-          <h1 className="font-bold text-7xl">IOS / ANDROID</h1>
+          <h1 className="text-7xl font-bold">IOS / ANDROID</h1>
         </div>
-        <div className="flex flex-col text-center  bg-opacity-50 h-full items-center justify-center  dark:bg-gray-700 dark:text-white">
+        <div className="flex h-full flex-col items-center justify-center  bg-opacity-50 px-2 text-center dark:bg-gray-700 dark:text-white">
           <h2 className="text-3xl font-bold">Geopro Global Solutions</h2>
           <h1 className="text-4xl font-bold">
             Enterprise Resource Planning (ERP)
