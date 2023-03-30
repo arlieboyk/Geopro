@@ -1,26 +1,8 @@
 "use client";
-import { Metadata } from "next";
 import { useEffect, useState } from "react";
-import getAllData from "../../lib/getAllData";
-import GetData from "../components/Contacts/GetData";
-// interface Data {
-//   id: number;
-//   uid: string;
-//   name: string;
-//   fname: string;
-//   lname: string;
-//   number: number;
-//   eaddress: string;
-//   birthday: string;
-//   username: string;
-//   password: string;
-//   confirmpassword: string;
-// }
-// interface ApiData {
-//   data: Data[];
-// }
 
 interface User {
+  map(arg0: (el: any) => any): import("react").ReactNode;
   id: number;
   name: string;
   username: string;
@@ -46,20 +28,16 @@ interface User {
 
 function Contacts() {
   const [data, setData] = useState<User[] | null>(null);
-  const [loading, setLoading] = useState(false);
+  // const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      // setLoading(true);
       const res = await fetch("/api/getData", {
         method: "POST",
-      })
-        .then((response) => response.json())
-        .then((json) => setData(json));
-
-      // const data = await res.json();
-      // setData(data);
-      // setLoading(false);
+      });
+      const data = await res.json();
+      // console.log("data ", data);
+      setData(data);
     };
 
     fetchData();
@@ -70,21 +48,7 @@ function Contacts() {
     console.log("content ", data);
   }, [data]);
 
-  // if (loading) {
-  //   return <p>Loading data...</p>;
-  // }
-
-  return (
-    <div>
-      {data?.map((user) => (
-        <div key={user.id}>
-          <h2>{user.name}</h2>
-          <p>Username: {user.username}</p>
-          <p>Email: {user.email}</p>
-        </div>
-      ))}
-    </div>
-  );
+  return <div>ss</div>;
 }
 
 export default Contacts;
