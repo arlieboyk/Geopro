@@ -7,6 +7,8 @@ import {
   WrenchIcon,
   HomeIcon,
   UserGroupIcon,
+  PhoneArrowDownLeftIcon,
+  WrenchScrewdriverIcon,
 } from "@heroicons/react/24/solid";
 import { useState, useRef, useEffect } from "react";
 type Props = {
@@ -50,7 +52,7 @@ function SideBar({ sidebar, toggleSideBar, hideSideBar, ousideClick }: Props) {
     <>
       <div
         // ref={refOne}
-        className={`absolute top-0 left-0 flex  h-screen -translate-x-full flex-col  py-2  transition-all ease-linear ${
+        className={`absolute top-0 left-0 flex  h-screen -translate-x-full flex-col py-2  transition-all  ease-linear md:translate-x-0 ${
           sidebar
             ? " w-2/4 translate-x-0 sm:w-1/3 md:w-1/4 lg:w-1/6   "
             : "-translate-x-full"
@@ -88,28 +90,47 @@ function SideBar({ sidebar, toggleSideBar, hideSideBar, ousideClick }: Props) {
               <WrenchIcon className="h-5 w-5 " /> Services
             </Link>
           ) : (
-            <PhoneIcon className="menus-icon" />
+            <Link href={"/services"}>
+              <WrenchIcon className="menus-icon" />
+            </Link>
           )}
 
-          <Link className="menus" href={"/employee"}>
-            <UserGroupIcon className="h-5 w-5 " /> Employee
-          </Link>
+          {sidebar ? (
+            <Link className="menus" href={"/employee"}>
+              <UserGroupIcon className="h-5 w-5 " /> Employee
+            </Link>
+          ) : (
+            <Link href={"/employee"}>
+              <UserGroupIcon className="menus-icon" />
+            </Link>
+          )}
+
+          {sidebar ? (
+            <Link className="menus" href={"/contacts"}>
+              <PhoneArrowDownLeftIcon className="h-5 w-5 " /> Contacts
+            </Link>
+          ) : (
+            <Link href={"/contacts"}>
+              <PhoneArrowDownLeftIcon className="menus-icon" />
+            </Link>
+          )}
           {/* services */}
           {sidebar ? (
             <details className="w-full ">
-              <summary className="list-none rounded-md px-4 py-2 hover:bg-slate-200 hover:font-bold hover:text-slate-600 ">
+              <summary className="menus list-none rounded-md px-4 py-2 hover:bg-slate-200 hover:font-bold hover:text-slate-600 ">
+                <WrenchScrewdriverIcon className="inline h-5 w-5" />
                 Services
                 <ChevronDownIcon className="inline h-4 w-4 text-lg hover:font-bold  " />
               </summary>
               <div className="mt-2 w-full space-y-3 text-center">
-                <p className="menus">Easethetics</p>
-                <p className="menus">Mambu</p>
-                <p className="menus">Outsystems</p>
-                <p className="menus">SnappyWire</p>
+                <p className="menus menus-dropdown-text">Easethetics</p>
+                <p className="menus menus-dropdown-text">Mambu</p>
+                <p className="menus menus-dropdown-text">Outsystems</p>
+                <p className="menus menus-dropdown-text">SnappyWire</p>
               </div>
             </details>
           ) : (
-            <PhoneIcon className="menus-icon" />
+            <WrenchScrewdriverIcon className="menus-icon" />
           )}
         </div>
 
