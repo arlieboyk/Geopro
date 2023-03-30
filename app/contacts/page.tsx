@@ -7,16 +7,8 @@ import GetData from "../components/Contacts/GetData";
 import { CLIENT_RENEG_LIMIT } from "tls";
 interface Data {
   id: number;
-  uid: string;
   name: string;
-  fname: string;
-  lname: string;
-  number: number;
-  eaddress: string;
-  birthday: string;
-  username: string;
-  password: string;
-  confirmpassword: string;
+  email: string;
 }
 
 function Contacts() {
@@ -49,16 +41,27 @@ function Contacts() {
 
   return (
     <>
-      <section className="w-full h-full overflow-x-hidden grid grid-cols-2">
-        {user.map((el) => (
-          <div key={el.id} className="min-w-full bg-white  ">
-            <Link href={`contacts/${el.id}`}>
-              <p className=" min-w-[6rem] text-black font-semibold">
-                {el.name}
-              </p>
-            </Link>
-          </div>
-        ))}
+      <section className="w-full h-full overflow-x-hidden">
+        <table className="w-full md:w-2/3 my-6  overflow-auto backdrop-blur-lg  backdrop-filter  mx-auto ">
+          <thead className="mb-6">
+            <tr className="w-full flex font-bold justify-between p-4">
+              <th>Id</th>
+              <th>Name</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          {user.map((el) => (
+            <tbody key={el.id}>
+              <Link href={`contacts/${el.id}`}>
+                <tr className="flex justify-between hover:scale-105  py-1 px-4 text-black font-semibold">
+                  <td>{el.id}</td>
+                  <td>{el.name}</td>
+                  <td>{el.email}</td>
+                </tr>
+              </Link>
+            </tbody>
+          ))}
+        </table>
       </section>
     </>
   );

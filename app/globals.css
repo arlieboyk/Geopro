@@ -30,6 +30,6 @@
 }
 
 .cards{
-  @apply h-44 w-1/2 px-5 rounded-sm shadow text-black font-bold   flex flex-col items-center justify-center
+  @apply h-44 w-10/12 md:w-2/3 lg:w-2/4 px-5  rounded-md shadow text-[#0088cc] font-bold   flex flex-col items-center justify-center
  
 }
