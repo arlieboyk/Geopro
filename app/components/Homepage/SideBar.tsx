@@ -123,7 +123,12 @@ function SideBar({ sidebar, toggleSideBar, hideSideBar, ousideClick }: Props) {
                 <ChevronDownIcon className="inline h-4 w-4 text-lg hover:font-bold  " />
               </summary>
               <div className="mt-2 w-full space-y-3 text-center">
-                <p className="menus menus-dropdown-text">Easethetics</p>
+                <Link
+                  href={"/services/easethetics"}
+                  className="menus menus-dropdown-text"
+                >
+                  Easethetics
+                </Link>
                 <p className="menus menus-dropdown-text">Mambu</p>
                 <p className="menus menus-dropdown-text">Outsystems</p>
                 <p className="menus menus-dropdown-text">SnappyWire</p>
