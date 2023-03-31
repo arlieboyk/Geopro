@@ -16,6 +16,7 @@ function Development() {
       threshold: 1,
     }
   );
+
   target.forEach((target) => {
     observer.observe(target);
   });
