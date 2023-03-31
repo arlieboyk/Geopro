@@ -1,5 +1,4 @@
 import "./globals.css";
-import "bootstrap/dist/css/bootstrap.css";
 import { Inter } from "next/font/google";
 import Navbar from "./components/Navbar";
 export const metadata = {
@@ -15,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html className={inter.className} lang="en">
-      <body className="bg-cover bg-fixed bg-no-repeat bg-[url(../public/bg.jpg)] relative">
+      <body className="relative bg-[url(../public/bg.jpg)] bg-cover bg-fixed bg-no-repeat">
         <Navbar />
 
         <main id="content">{children}</main>

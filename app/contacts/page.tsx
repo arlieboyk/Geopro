@@ -1,91 +1,87 @@
 "use client";
-import { Metadata } from "next";
+import Link from "next/link";
 import { useEffect, useState } from "react";
-import getAllData from "../../lib/getAllData";
-import GetData from "../components/Contacts/GetData";
-interface Data {
+import { Suspense } from "react";
+import Loading from "../loading";
+
+interface User {
   id: number;
-  uid: string;
-  fname: string;
-  lname: string;
-  number: number;
-  eaddress: string;
-  birthday: string;
-  username: string;
-  password: string;
-  confirmpassword: string;
+  name: string;
+  email: string;
 }
 
 function Contacts() {
-  const [data, setData] = useState<Data[]>(null);
-  const [isLoading, setLoading] = useState(false);
+  const [data, setData] = useState<User[] | null>(null);
+  // const [data, setData] = useState([]);
+  const [user, setUser] = useState<User[]>([]);
+
+  /* client side rendering wihout api endpiont */
+  // useEffect(() => {
+  //   fetch("https://jsonplaceholder.typicode.com/users").then((res) => {
+  //     res.json().then((res) => setData(res));
+  //   });
+  // }, []);
+
+  /* api endpiont */
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch("/api/getData", {
-        method: "GET",
+        method: "POST",
       });
-
       const data = await res.json();
-      return data;
+      // console.log("data ", data);
+      setData(data);
     };
-    setLoading(true);
-    // fetchData()
-    //   .then((data) => {
-    //     setData(data);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
-    // const res: any = fetchData();
-    // // console.log(res);
-    // const entries = Object.entries(res);
-    // console.log("data ", entries);
-    // setLoading(false);
+
+    fetchData();
+    fetch("http://localhost:3000/api/users")
+      .then((res) => {
+        res.json().then((res) => setUser(res));
+      })
+      .catch((err) => {
+        console.log(err, " error fetchingz");
+      });
   }, []);
-  //#region
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const res = await fetch("/api/getData", {
-  //       method: "GET",
-  //     });
 
-  //     const data = await res.json();
-  //     return data;
-  //   };
-  //   const res: any = fetchData();
-  //   console.log("res", res);
-  //   setData(res);
-  //   console.log("data ", data);
-  // }, []);
+  useEffect(() => {
+    console.log(data);
 
-  //#endregion
+    console.log("users ", user);
+  }, []);
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   fetch("/api/getData")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setData(data);
-  //       setLoading(false);
-  //     });
-  // }, []);
-
-  if (isLoading) return <p>Loading...</p>;
-  if (!data) return <p>No profile data</p>;
   return (
-    <div>
-      {/* {Array.isArray(data) &&
-        data.map((el) => <div key={el.id}>{el.birthday}</div>)} */}
-      {/* {data.forEach((el) => (
-        <>
-        <h1>{el.fname}</h1>
-        <h1>{el.lname}</h1>
-        </>
-      ))} */}
-      {/* {data[0].confirmpassword} */}
-
-      {/* <GetData/> */}
-    </div>
+    <>
+      <section className="h-full w-full overflow-x-hidden">
+        <table className="my-6 mx-auto w-full  overflow-auto backdrop-blur-lg  backdrop-filter  md:w-2/3 ">
+          <thead className="mb-6">
+            <tr className="flex w-full justify-between p-4 font-bold">
+              <th>Id</th>
+              <th>Name</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <Suspense fallback={<Loading />}>
+            {user ? (
+              user.map((el) => (
+                <tbody key={el.id}>
+                  <Link href={`contacts/${el.id}`}>
+                    <tr className="flex justify-between py-1  px-4 font-semibold text-black hover:scale-105">
+                      <td>{el.id}</td>
+                      <td>{el.name}</td>
+                      <td>{el.email}</td>
+                    </tr>
+                  </Link>
+                </tbody>
+              ))
+            ) : (
+              <div className="text-center text-3xl font-bold">
+                Loading data...
+              </div>
+            )}
+          </Suspense>
+        </table>
+      </section>
+    </>
   );
 }
 
