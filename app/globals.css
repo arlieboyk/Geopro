@@ -9,12 +9,12 @@
 }
 
 .menus {
-  @apply w-full flex items-center justify-start gap-x-2 text-center cursor-pointer hover:bg-slate-200 hover:text-slate-600 hover:font-bold rounded-md px-4 py-2;
+  @apply w-full flex items-center justify-start gap-x-3  cursor-pointer hover:bg-slate-200 transition-all duration-75 hover:text-slate-600 hover:font-bold rounded-md px-4 py-2;
 }
 
 
 .menus-dropdown-text{
-  @apply justify-center
+  @apply justify-center text-left
 }
 
 
