@@ -13,7 +13,7 @@ import Link from "next/link";
 function Navbar() {
   const [search, setSearch] = useState(false);
   const [sideBar, setSideBar] = useState(true);
-  const [hideSideBar, setHideSideBar] = useState(false);
+  const [hideSideBar, setHideSideBar] = useState(true);
 
   const handleSideBar = () => {
     setSideBar(!sideBar);
@@ -58,7 +58,8 @@ function Navbar() {
               <button
                 className=" space-y-1 hover:scale-105"
                 onClick={() => {
-                  setHideSideBar(!sideBar);
+                  setHideSideBar(!sideBar),
+                    console.log(sideBar ? `true` : `flase`);
                   setSideBar(!sideBar), console.log("toggle");
                 }}
               >
@@ -71,12 +72,14 @@ function Navbar() {
         </nav>
       )}
 
-      {hideSideBar && (
+      {hideSideBar ? (
+        <></>
+      ) : (
         <SideBar
-          ousideClick={() => setSideBar(false)}
+          ousideClick={() => console.log("")}
           toggleSideBar={handleSideBar}
           sidebar={sideBar}
-          hideSideBar={() => setHideSideBar(false)}
+          hideSideBar={() => setHideSideBar(!hideSideBar)}
         />
       )}
       {/* <SideBar

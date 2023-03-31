@@ -26,18 +26,18 @@ export default function First() {
         {/* process icons container */}
         <div className="flex flex-col justify-center lg:flex-row lg:justify-around ">
           <div>
-            <p className=" lative left-0 right-0 mx-auto h-20 w-20 rounded bg-[#00bbfd]"></p>
+            <p className=" relative left-0 right-0 mx-auto h-20 w-20 rounded bg-[#00bbfd]"></p>
             <h2 className="my-4 text-xl font-bold text-gray-700">STRATEGY</h2>
           </div>
           <div>
-            <p className=" lative left-0 right-0 mx-auto h-20 w-20 rounded bg-[#00bbfd]"></p>
+            <p className=" relative left-0 right-0 mx-auto h-20 w-20 rounded bg-[#00bbfd]"></p>
 
             <h2 className="my-4 text-xl font-bold text-gray-700">
               DEVELOPMENT
             </h2>
           </div>
           <div>
-            <p className=" lative inset-0  m-auto  h-20 w-20 rounded bg-[#00bbfd]"></p>
+            <p className=" relative inset-0  m-auto  h-20 w-20 rounded bg-[#00bafd]"></p>
 
             <h2 className="my-4 text-xl font-bold text-gray-700">MARKETING</h2>
           </div>
@@ -59,7 +59,7 @@ export default function First() {
             </Link>
           </p>
         </section>
-        <section className="services bg-[#00bafdbe]">
+        <section className="services bg-[#00bafdd2]">
           <img
             src="https://geoproglobal.com/wp-content/uploads/2020/11/Easethetics-300x101.png"
             className="relative inset-0  m-auto"
@@ -75,7 +75,7 @@ export default function First() {
           </p>
         </section>
 
-        <section className="services bg-[#00bbfd59]">
+        <section className="services bg-[#00bafda4]">
           <img
             src="https://geoproglobal.com/wp-content/uploads/2020/03/Untitled-2-300x76.png"
             className="relative left-0 right-0 mx-auto"

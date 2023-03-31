@@ -1,9 +1,10 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Suspense } from "react";
+import Loading from "../loading";
 
 interface User {
-  map(arg0: (el: any) => any): import("react").ReactNode;
   id: number;
   name: string;
   email: string;
@@ -59,23 +60,25 @@ function Contacts() {
               <th>Email</th>
             </tr>
           </thead>
-          {user ? (
-            user.map((el) => (
-              <tbody key={el.id}>
-                <Link href={`contacts/${el.id}`}>
-                  <tr className="flex justify-between py-1  px-4 font-semibold text-black hover:scale-105">
-                    <td>{el.id}</td>
-                    <td>{el.name}</td>
-                    <td>{el.email}</td>
-                  </tr>
-                </Link>
-              </tbody>
-            ))
-          ) : (
-            <div className="text-center text-3xl font-bold">
-              Loading data...
-            </div>
-          )}
+          <Suspense fallback={<Loading />}>
+            {user ? (
+              user.map((el) => (
+                <tbody key={el.id}>
+                  <Link href={`contacts/${el.id}`}>
+                    <tr className="flex justify-between py-1  px-4 font-semibold text-black hover:scale-105">
+                      <td>{el.id}</td>
+                      <td>{el.name}</td>
+                      <td>{el.email}</td>
+                    </tr>
+                  </Link>
+                </tbody>
+              ))
+            ) : (
+              <div className="text-center text-3xl font-bold">
+                Loading data...
+              </div>
+            )}
+          </Suspense>
         </table>
       </section>
     </>

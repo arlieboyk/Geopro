@@ -3,7 +3,6 @@ import { Carousel } from "flowbite-react";
 import Wave from "react-wavify";
 function Development() {
   const target = document.querySelectorAll(".text-section");
-
   const observer = new IntersectionObserver(
     (entries) => {
       console.log(entries);
