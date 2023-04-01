@@ -27,7 +27,7 @@ function Development() {
         paused={false}
         options={{
           height: 50,
-          amplitude: 20,
+          amplitude: 30,
           speed: 0.15,
           points: 3,
         }}
