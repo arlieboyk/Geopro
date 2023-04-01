@@ -5,13 +5,13 @@ import { avengers } from "../../../components/Homepage/Avengers";
 export async function GET(request: Request, { params }) {
   const employeeId = params.employeeId;
 
-  // avengers.map((el) => {
-  //   if (employeeId === el.id) {
-  //     return NextResponse.json(el);
-  //   } else {
-  //     return new Response(`No employee ${employeeId}`);
-  //   }
-  // });
+  avengers.map((employee) => {
+    if (employeeId === employee.id) {
+      return NextResponse.json(employee);
+    } else {
+      return new Response(`No employee ${employeeId}`);
+    }
+  });
 
   interface emp {
     name: string;
@@ -29,5 +29,5 @@ export async function GET(request: Request, { params }) {
 
   // const result = avengers.filter(getId);
 
-  return NextResponse.json(avengers);
+  // return NextResponse.json(avengers);
 }

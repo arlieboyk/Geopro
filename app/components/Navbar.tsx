@@ -12,11 +12,15 @@ import Link from "next/link";
 
 function Navbar() {
   const [search, setSearch] = useState(false);
-  const [sideBar, setSideBar] = useState(true);
+  const [sideBar, setSideBar] = useState(false);
   const [hideSideBar, setHideSideBar] = useState(false);
 
   const handleSideBar = () => {
     setSideBar(!sideBar);
+  };
+
+  const handleHideSideBar = () => {
+    setHideSideBar(!hideSideBar);
   };
   return (
     <header className="sticky  top-0 z-10  bg-opacity-50  backdrop-blur-lg backdrop-filter">
@@ -58,8 +62,14 @@ function Navbar() {
               <button
                 className=" space-y-1 hover:scale-105"
                 onClick={() => {
-                  setHideSideBar(!sideBar);
-                  setSideBar(!sideBar), console.log("toggle");
+                  handleHideSideBar();
+                  console.log(
+                    hideSideBar ? `hideSideBar true` : `hideSideBar flase`
+                  );
+                  setSideBar(!sideBar),
+                    console.log(
+                      `${sideBar ? "Sidebar true" : "Sidebar false"}`
+                    );
                 }}
               >
                 <p className="h-0.5 w-6  bg-gray-600"></p>
@@ -71,20 +81,20 @@ function Navbar() {
         </nav>
       )}
 
-      {hideSideBar && (
+      {/* {hideSideBar && (
         <SideBar
-          ousideClick={() => setSideBar(false)}
+          ousideClick={() => console.log("")}
           toggleSideBar={handleSideBar}
           sidebar={sideBar}
-          hideSideBar={() => setHideSideBar(false)}
+          hideSideBar={() => handleHideSideBar}
         />
-      )}
-      {/* <SideBar
+      )} */}
+      <SideBar
         ousideClick={() => setSideBar(false)}
         toggleSideBar={handleSideBar}
         sidebar={sideBar}
         hideSideBar={() => setHideSideBar(false)}
-      /> */}
+      />
     </header>
   );
 }
