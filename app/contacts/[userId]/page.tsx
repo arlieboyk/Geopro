@@ -37,6 +37,19 @@ export default async function page({ params }) {
   return (
     <section className="my-12 h-full w-full">
       {/* card */}
+<<<<<<< HEAD
+      <div className="shadw-sm relative m-auto w-10/12 rounded bg-white py-6 text-center md:w-2/3">
+        <img
+          src={photo.thumbnailUrl}
+          className="relative top-0 left-0 right-0 mx-auto h-32 w-32 rounded-full hover:scale-105  hover:shadow-2xl"
+        />
+        <p className="mx-2 inline">{user.id}</p>
+        <h2 className="inline font-semibold">{user.name}</h2>
+        <h2 className=" font-normal">Phone no: {user.phone}</h2>
+        <p>Latitude: {user.address.geo.lat}</p>
+        <p>Longtitude: {user.address.geo.lng}</p>
+      </div>
+=======
       <Suspense fallback={<Loading />}>
         <div className="shadw-sm relative m-auto w-10/12 rounded bg-white py-6 text-center md:w-2/3">
           <img
@@ -50,6 +63,7 @@ export default async function page({ params }) {
           <p>{user.address.geo.lng}</p>
         </div>
       </Suspense>
+>>>>>>> af58a939c786722f9a262c6832d6747c85672426
     </section>
   );
 }

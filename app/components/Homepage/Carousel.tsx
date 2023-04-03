@@ -9,7 +9,11 @@ export default function CarouselSection() {
   // onmouseover = (event) => {};
   return (
     <section className="relative  ">
+<<<<<<< HEAD
+      <Carousel className="text-gray- h-screen w-full text-gray-900 backdrop-blur backdrop-filter">
+=======
       <Carousel className="text-gray- h-screen w-full px-6  text-gray-200">
+>>>>>>> af58a939c786722f9a262c6832d6747c85672426
         <div className="flex w-full flex-col items-center justify-center px-2 text-center dark:bg-gray-700 dark:text-white">
           <h2 className="text-3xl font-bold">Geopro Global Solutions</h2>
           <h1 className="text-4xl font-bold ">
