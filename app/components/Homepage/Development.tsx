@@ -2,24 +2,25 @@ import React from "react";
 import { Carousel } from "flowbite-react";
 import Wave from "react-wavify";
 function Development() {
-  const target = document.querySelectorAll(".text-section");
-  const observer = new IntersectionObserver(
-    (entries) => {
-      console.log(entries);
-      entries.forEach((entry) => {
-        //if entry is intersecting
-        entry.target.classList.toggle("show", entry.isIntersecting);
-      });
-    },
-    {
-      threshold: 1,
-    }
-  );
+  if (typeof window !== "undefined") {
+    const target = document.querySelectorAll(".text-section");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        console.log(entries);
+        entries.forEach((entry) => {
+          //if entry is intersecting
+          entry.target.classList.toggle("show", entry.isIntersecting);
+        });
+      },
+      {
+        threshold: 1,
+      }
+    );
 
-  target.forEach((target) => {
-    observer.observe(target);
-  });
-
+    target.forEach((target) => {
+      observer.observe(target);
+    });
+  }
   return (
     <section className=" mt-26 flex h-[40rem] w-full flex-col items-center justify-center bg-white">
       <Wave

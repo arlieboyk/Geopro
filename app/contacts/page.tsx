@@ -3,54 +3,36 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Suspense } from "react";
 import Loading from "../loading";
+import Form from "../components/Contacts/Form";
 
 interface User {
   id: number;
-  name: string;
+  fullName: string;
   email: string;
 }
 
 function Contacts() {
-  const [data, setData] = useState<User[] | null>(null);
-  // const [data, setData] = useState([]);
   const [user, setUser] = useState<User[]>([]);
-
-  /* client side rendering wihout api endpiont */
-  // useEffect(() => {
-  //   fetch("https://jsonplaceholder.typicode.com/users").then((res) => {
-  //     res.json().then((res) => setData(res));
-  //   });
-  // }, []);
-
-  /* api endpiont */
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch("/api/getData", {
-        method: "POST",
+    const fetchUser = async () => {
+      const res = await fetch("/api/getUser", {
+        method: "GET",
       });
       const data = await res.json();
-      // console.log("data ", data);
-      setData(data);
+      setUser(await data);
     };
 
-    fetchData();
-    fetch("http://localhost:3000/api/users")
-      .then((res) => {
-        res.json().then((res) => setUser(res));
-      })
-      .catch((err) => {
-        console.log(err, " error fetchingz");
-      });
+    fetchUser();
   }, []);
 
   useEffect(() => {
-    console.log(data);
-
-    console.log("users ", user);
+    console.log(user);
   }, []);
 
   return (
-    <>
+    <div className="py-12">
+      <Form />
+
       <section className="h-full w-full overflow-x-hidden">
         <table className="my-6 mx-auto w-full  overflow-auto backdrop-blur-lg  backdrop-filter  md:w-2/3 ">
           <thead className="mb-6">
@@ -61,28 +43,45 @@ function Contacts() {
             </tr>
           </thead>
           <Suspense fallback={<Loading />}>
-            {user ? (
-              user.map((el) => (
-                <tbody key={el.id}>
-                  <Link href={`contacts/${el.id}`}>
+            {user &&
+              user.map((user) => (
+                <tbody key={user.id}>
+                  <Link href={`contacts/${user.id}`}>
                     <tr className="flex justify-between py-1  px-4 font-semibold text-black hover:scale-105">
-                      <td>{el.id}</td>
-                      <td>{el.name}</td>
-                      <td>{el.email}</td>
+                      <td>{user.id}</td>
+                      <td>{user.fullName}</td>
+                      <td>{user.email}</td>
                     </tr>
                   </Link>
                 </tbody>
-              ))
-            ) : (
-              <div className="text-center text-3xl font-bold">
-                Loading data...
-              </div>
-            )}
+              ))}
+
+            <Loading />
           </Suspense>
         </table>
       </section>
-    </>
+    </div>
   );
 }
 
 export default Contacts;
+
+/* client side fetching wihout api endpiont */
+// useEffect(() => {
+//   fetch("https://jsonplaceholder.typicode.com/users").then((res) => {
+//     res.json().then((res) => setData(res));
+//   });
+// }, []);
+
+/* api endpiont */
+
+// const fetchData = async () => {
+//   const res = await fetch("/api/getData", {
+//     method: "POST",
+//   });
+//   const data = await res.json();
+//   // console.log("data ", data);
+//   setData(data);
+// };
+
+// fetchData();

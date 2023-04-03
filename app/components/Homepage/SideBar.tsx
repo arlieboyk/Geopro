@@ -20,22 +20,25 @@ type Props = {
 
 function SideBar({ sidebar, toggleSideBar, hideSideBar, ousideClick }: Props) {
   const [sideBar, setSideBar] = useState(sidebar);
-  const content = [document.getElementById("content")];
-  console.log("inside sidebar: ", sideBar);
 
-  useEffect(() => {
-    setSideBar(sidebar);
-  }, [sidebar]);
+  if (typeof window !== "undefined") {
+    const content = [document.getElementById("content")];
+    console.log("inside sidebar: ", sideBar);
 
-  useEffect(() => {
-    for (let element of content) {
-      if (sideBar) {
-        element?.classList.add("pointer-events-none");
-      } else {
-        element?.classList.remove("pointer-events-none");
+    useEffect(() => {
+      setSideBar(sidebar);
+    }, [sidebar]);
+
+    useEffect(() => {
+      for (let element of content) {
+        if (sideBar) {
+          element?.classList.add("pointer-events-none");
+        } else {
+          element?.classList.remove("pointer-events-none");
+        }
       }
-    }
-  }, [sideBar]);
+    }, [sideBar]);
+  }
 
   /* detect outside sidebar */
   // const refOne = useRef(null);

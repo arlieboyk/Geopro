@@ -19,7 +19,7 @@ export default function RootLayout({
       <body className="relative bg-[url(../public/bg.jpg)] bg-cover bg-fixed bg-no-repeat">
         <Navbar />
 
-        <main id="content">{children}</main>
+        <main id="content ">{children}</main>
       </body>
     </html>
   );
