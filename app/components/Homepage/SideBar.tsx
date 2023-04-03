@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import {
-  PhoneIcon,
   ChevronDownIcon,
   ChevronDoubleRightIcon,
   WrenchIcon,
@@ -22,10 +21,6 @@ function SideBar({ sidebar, toggleSideBar, hideSideBar, ousideClick }: Props) {
   const [sideBar, setSideBar] = useState(sidebar);
   const content = [document.getElementById("content")];
   console.log("inside sidebar: ", sideBar);
-
-  useEffect(() => {
-    setSideBar(sidebar);
-  }, [sidebar]);
 
   useEffect(() => {
     for (let element of content) {
@@ -56,15 +51,8 @@ function SideBar({ sidebar, toggleSideBar, hideSideBar, ousideClick }: Props) {
   return (
     <>
       <div
-        // ref={refOne}
-<<<<<<< HEAD
-        className={`absolute top-0 left-0 flex  h-screen  -translate-x-full flex-col py-2  transition-all ease-linear  md:translate-x-0 ${
+        className={`absolute top-0 left-0 flex  h-screen  -translate-x-full flex-col bg-slate-800 bg-opacity-90 px-2 py-2 text-white  transition-all  ease-linear md:translate-x-0 ${
           sidebar
-=======
-        className={`absolute top-0 left-0 flex  h-screen w-auto -translate-x-full flex-col  bg-slate-800  bg-opacity-90 py-2 
-        px-2 text-white transition-all ease-linear md:translate-x-0 ${
-          sideBar
->>>>>>> af58a939c786722f9a262c6832d6747c85672426
             ? " w-2/4 translate-x-0 sm:w-1/3 md:w-1/4 lg:w-1/6   "
             : "-translate-x-full"
         } `}
@@ -171,7 +159,10 @@ function SideBar({ sidebar, toggleSideBar, hideSideBar, ousideClick }: Props) {
           <></>
         ) : (
           <button
-            onClick={hideSideBar}
+            onClick={() => {
+              hideSideBar;
+              toggleSideBar;
+            }}
             className="hover:text absolute bottom-8 left-0 right-0 mx-auto h-10 w-10  rounded-full text-center hover:bg-slate-900"
           >
             X

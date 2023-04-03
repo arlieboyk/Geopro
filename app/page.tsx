@@ -13,16 +13,7 @@ export default function Home() {
 
       <Avengers />
 
-<<<<<<< HEAD
-      {/* scroll to top */}
-      <ScrollToTop showUnder={160}>
-        <span>
-          <ChevronDoubleUpIcon className="h-12 w-12 rounded-full p-3 text-gray-400 hover:bg-[#0088cc] hover:text-white" />
-        </span>
-      </ScrollToTop>
-=======
       <ScrollTop></ScrollTop>
->>>>>>> af58a939c786722f9a262c6832d6747c85672426
     </>
   );
 }

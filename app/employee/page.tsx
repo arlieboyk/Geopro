@@ -1,27 +1,22 @@
 import { AiFillFacebook, AiFillLinkedin } from "react-icons/ai";
 import { Employee } from "./[employeeId]/page";
 import Link from "next/link";
-import ScrollToTop from "react-scroll-up";
-import { ChevronDoubleUpIcon } from "@heroicons/react/24/solid";
+import ScrollTop from "../components/ScrollTop";
 async function employee() {
   const res = await fetch("http://localhost:3000/api/employee");
   const employees: Employee[] = await res.json();
 
   return (
     <div>
-      <ScrollToTop showUnder={160}>
-        <span>
-          <ChevronDoubleUpIcon className="h-12 w-12 rounded-full p-3 text-gray-400 hover:bg-[#0088cc] hover:text-white" />
-        </span>
-      </ScrollToTop>
+      <ScrollTop />
       {employees ? (
         employees.map((emp) => (
           <>
             {/* cards */}
             <div
               key={emp.id}
-              className="rounded-2 relative my-12 mx-auto  h-auto w-10/12 space-y-6  py-4 px-6 
-               text-center text-white backdrop-blur-lg backdrop-filter hover:scale-105 md:w-2/3 lg:w-2/4"
+              className="rounded-2 relative my-12 mx-auto  h-auto w-10/12 space-y-6  p-6  
+               text-center text-white backdrop-blur-lg backdrop-filter hover:scale-105 md:w-2/3 lg:w-1/3"
             >
               <Link href={`/employee/${emp.id}`}>
                 <img

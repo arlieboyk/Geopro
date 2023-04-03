@@ -17,10 +17,12 @@ function Navbar() {
 
   const handleSideBar = () => {
     setSideBar(!sideBar);
+    console.log("toggle sidebar");
   };
 
   const handleHideSideBar = () => {
     setHideSideBar(!hideSideBar);
+    console.log("hide");
   };
   return (
     <header className="sticky  top-0 z-10  bg-opacity-50  backdrop-blur-lg backdrop-filter">
@@ -63,13 +65,7 @@ function Navbar() {
                 className=" space-y-1 hover:scale-105"
                 onClick={() => {
                   handleHideSideBar();
-                  console.log(
-                    hideSideBar ? `hideSideBar true` : `hideSideBar flase`
-                  );
-                  setSideBar(!sideBar),
-                    console.log(
-                      `${sideBar ? "Sidebar true" : "Sidebar false"}`
-                    );
+                  handleSideBar();
                 }}
               >
                 <p className="h-0.5 w-6  bg-gray-600"></p>
@@ -81,20 +77,20 @@ function Navbar() {
         </nav>
       )}
 
-      {/* {hideSideBar && (
+      {hideSideBar && (
         <SideBar
           ousideClick={() => console.log("")}
           toggleSideBar={handleSideBar}
           sidebar={sideBar}
-          hideSideBar={() => handleHideSideBar}
+          hideSideBar={handleHideSideBar}
         />
-      )} */}
-      <SideBar
+      )}
+      {/*  <SideBar
         ousideClick={() => setSideBar(false)}
         toggleSideBar={handleSideBar}
         sidebar={sideBar}
         hideSideBar={() => setHideSideBar(false)}
-      />
+      /> */}
     </header>
   );
 }
