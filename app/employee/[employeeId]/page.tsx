@@ -10,11 +10,10 @@ export default async function page({ params }) {
   const res = await fetch(`http://localhost:3000/api/employee/`);
   const employee: Employee[] = await res.json();
 
-  function getId(employee: any) {
+  function getId(employee: Employee) {
     console.log("id", employee.id);
     if (employee.id == employeeId) {
       console.log("got ", employee);
-      console.log("image ", employee.image);
 
       return employee;
     } else {

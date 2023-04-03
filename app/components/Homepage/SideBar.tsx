@@ -57,10 +57,10 @@ function SideBar({ sidebar, toggleSideBar, hideSideBar, ousideClick }: Props) {
     <>
       <div
         // ref={refOne}
-        className={`absolute top-0 left-0 flex  h-screen w-auto -translate-x-full flex-col  bg-slate-800  bg-opacity-90 py-2 
+        className={`absolute top-0 left-0 flex h-screen  -translate-x-full flex-col  bg-slate-800  bg-opacity-90 py-2 
         px-2 text-white transition-all ease-linear md:translate-x-0 ${
           sideBar
-            ? " w-2/4 translate-x-0 sm:w-1/3 md:w-1/4 lg:w-1/6   "
+            ? " w-2/4 translate-x-0  md:w-1/4 lg:w-1/6   "
             : "-translate-x-full"
         } `}
       >

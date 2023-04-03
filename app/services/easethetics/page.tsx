@@ -164,8 +164,8 @@ export default function eassethetics() {
       </section>
       <ScrollTop />
 
-      <footer className="relative h-[4rem] w-full bg-gray-100  ">
-        <p className="absolute inset-0 z-0 m-auto">
+      <footer className="relative flex h-[4rem] w-full items-center justify-center bg-gray-100  ">
+        <p className="absolute m-auto">
           © copyright 2021. All Rights Reserved.
         </p>
       </footer>
