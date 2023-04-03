@@ -2,34 +2,28 @@ import { NextResponse } from "next/server";
 import prisma from "../../../lib/Prisma";
 import { NextApiRequest, NextApiResponse } from "next";
 
-export async function POST(
+export async function GET(
   request: Request,
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { fName } = req.body;
-  const { email } = req.body;
-  const { password } = req.body;
+  try {
+    const { fName, email, password } = req.body;
+    const user = await prisma.user.create({
+      data: {
+        fullName: fName,
+        email: email,
+        password: password,
+      },
+    });
 
-  console.log(fName, email, password);
+    console.log("user created", req.body);
+    res.status(200).json({ message: `user created ${user}` });
+  } catch (err) {
+    console.log("error");
 
-  return NextResponse.json({ msg: req.body });
-  // try {
-  //   const user = await prisma.user.create({
-  //     data: {
-  //       fullName: fName,
-  //       email: email,
-  //       password: password,
-  //     },
-  //   });
-
-  //   console.log("user created", req.body);
-  //   res.status(200).json({ message: "Note created" });
-  // } catch (err) {
-  //   console.log("error");
-
-  //   return NextResponse.json({ msg: error });
-  // }
+    return NextResponse.json({ msg: err });
+  }
 }
 
 // const handleSubmit = async (fName: string, email: string, password: string) => {

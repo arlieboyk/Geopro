@@ -27,7 +27,7 @@ export default function Form() {
 
   return (
     <section>
-      <form className=" op m-auto w-11/12 rounded bg-white px-4 py-4 md:w-2/3">
+      <form className=" m-auto w-11/12 rounded bg-white px-4 py-4 md:w-2/3">
         <label htmlFor="name" className="font-semibold text-headingFont">
           Full name
         </label>
@@ -59,7 +59,7 @@ export default function Form() {
             type={`${isPasswordVisible ? "text" : "password"}`}
             id="password"
             onChange={(e) => setPassword(e.target.value)}
-            className="focus-border-0 appearance-none border-none focus:ring-0"
+            className=" focus-border-0 w-full appearance-none border-none focus:ring-0"
           />
           <EyeIcon
             className="absolute right-3 h-5 w-5 cursor-pointer text-myBlue"
