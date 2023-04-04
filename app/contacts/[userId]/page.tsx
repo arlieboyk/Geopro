@@ -1,55 +1,111 @@
-import { Suspense } from "react";
+"use client";
 import Loading from "../loading";
+import { useEffect, useState } from "react";
+import { FaThumbsUp } from "react-icons/fa";
+import { BiDotsHorizontalRounded } from "react-icons/bi";
+import Modal from "../../components/Contacts/Modal";
 
-interface user {
-  name: string;
+interface User {
   id: number;
+  fullName: string;
   email: string;
-  phone: string;
-  address: {
-    geo: {
-      lat: number;
-      lng: string;
-    };
-  };
+  message: string;
+  createdAt: Date;
 }
 interface photo {
   albumId: number;
   thumbnailUrl: string;
 }
 
-const getUser = async (id: number) => {
-  const res = await fetch(`http://localhost:3000/api/users/${id}`);
-  const data = res.json();
-  return await data;
-};
+export default function page({ params }) {
+  const [user, setUser] = useState<User>();
+  const [like, setLike] = useState(5);
+  const [modal, setModal] = useState(false);
 
-export default async function page({ params }) {
-  /* fetch photos directly in this component */
-  const res = await fetch(
-    `https://jsonplaceholder.typicode.com/photos/${params.userId}`
-  );
-  const photo: photo = await res.json();
+  const [profileUrl, setProfileUrl] = useState("");
+  console.log("id ", params.userId);
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await fetch(
+        `http://localhost:3000/api/getUser/${params.userId}`,
+        {
+          next: { revalidate: 10 },
+          method: "GET",
+        }
+      );
+      const data = await res.json();
+      setUser(data);
+    };
 
-  const user: user = await getUser(params.userId);
-  console.log("user ", user);
+    fetchUser();
+  }, []);
+  // const photo: photo = await res.json();
+  useEffect(() => {
+    fetch(`https://jsonplaceholder.typicode.com/photos/${params.userId}`).then(
+      (res) => {
+        res.json().then((res) => {
+          setProfileUrl(res.thumbnailUrl), console.log("photo: ", res);
+        });
+      }
+    );
+  }, []);
 
   return (
-    <Suspense fallback={<Loading />}>
-      <section className="my-12 h-full w-full">
-        {/* card */}
-        <div className="shadw-sm relative m-auto w-10/12 rounded bg-white py-6 text-center md:w-2/3">
-          <img
-            src={photo.thumbnailUrl}
-            className="relative top-0 left-0 right-0 mx-auto h-32 w-32 rounded-full hover:scale-105  hover:shadow-2xl"
-          />
-          <p className="mx-2 inline">{user.id}</p>
-          <h2 className="inline font-semibold">{user.name}</h2>
-          <h2 className=" font-normal">Phone no: {user.phone}</h2>
-          <p>Latitude: {user.address.geo.lat}</p>
-          <p>Longtitude: {user.address.geo.lng}</p>
-        </div>
-      </section>
-    </Suspense>
+    <section className="my-12 h-full w-full">
+      {/* card */}
+      <div className="shadw-sm backdrop-flter relative m-auto  w-11/12  rounded py-6  text-center backdrop-blur-lg md:w-2/3">
+        {!user && <Loading />}
+
+        {user && (
+          <div
+            key={user?.id}
+            className="relative mx-auto w-10/12 rounded bg-white p-4 shadow md:w-1/2"
+          >
+            <img
+              src={profileUrl}
+              className="absolute -left-11 top-0  mx-0 h-10 w-10 rounded-full hover:scale-105  hover:shadow-2xl"
+            />
+
+            <div className="text-left">
+              <h2 className="mx-3 inline-block font-semibold">
+                {user?.fullName}
+              </h2>
+              <small>
+                Messages at: {new Date(user?.createdAt).toLocaleString()}
+              </small>
+              <BiDotsHorizontalRounded
+                onClick={() => setModal(!modal)}
+                className="absolute right-3 inline h-4 w-4 cursor-pointer text-gray-300"
+              />
+            </div>
+
+            {/* message */}
+            <div className="m-auto  w-11/12 rounded bg-gray-900/25 py-3 px-1">
+              <h2 className=" w-auto rounded-md font-normal leading-snug text-gray-900">
+                Message {user?.message}
+              </h2>
+            </div>
+
+            <div className="relative  mt-2  h-5 w-auto  text-myBlue">
+              <div
+                className="absolute right-4 flex cursor-pointer items-center  space-x-1"
+                onClick={() => setLike((prev) => prev + 1)}
+              >
+                <FaThumbsUp className="h-4 w-4 hover:scale-105 " />{" "}
+                <span className="hover:scale"> {like}</span>
+              </div>
+            </div>
+            {/* modal */}
+            {modal && <Modal id={user.id} />}
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
+
+// const getUser = async (id: number) => {
+//   const res = await fetch(`http://localhost:3000/api/getUser/${id}`);
+//   const data = res.json();
+//   return await data;
+// };
