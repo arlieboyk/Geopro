@@ -34,6 +34,7 @@ export default function page({ params }) {
         }
       );
       const data = await res.json();
+      console.log(`id:${params.userId} ${user?.fullName}`);
       setUser(data);
     };
 
