@@ -1,5 +1,6 @@
 import { EyeIcon } from "@heroicons/react/24/solid";
 import { useState, useEffect, use } from "react";
+import { AiFillFacebook, AiFillLinkedin } from "react-icons/ai";
 
 interface User {
   id: number;
@@ -7,7 +8,7 @@ interface User {
   password: string;
   email: string;
 }
-
+import { getApiEndpoint } from "../../../lib/dynamicUrl";
 export default function Form() {
   const [isPasswordVisible, setPasswordVisible] = useState(false);
   // const [user, setUser] = useState<User[]>([]);
@@ -16,12 +17,11 @@ export default function Form() {
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (event: any) => {
-    event.preventDefault();
+    // event.preventDefault();
     let data = { fullname: fName, email: email, message: message };
-    const endpoint = "/api/addUser";
     const JSONdata = JSON.stringify(data);
 
-    const response = await fetch(endpoint, {
+    const response = await fetch(`${getApiEndpoint("addUser")}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSONdata,
@@ -36,6 +36,18 @@ export default function Form() {
       onSubmit={handleSubmit}
       className=" m-auto  w-11/12 rounded bg-white  px-4 py-4 md:w-2/3"
     >
+      <div className="mx-auto my-3 flex w-auto space-x-3 text-myBlue">
+        <h1>Get in Touch</h1>
+        <a href="https://www.facebook.com/geoproglobalPH" target="_blank">
+          <AiFillFacebook className="h-6 w-6  hover:scale-105" />
+        </a>
+        <a
+          href="https://www.linkedin.com/company/geopro-global-solutions-inc"
+          target="_blank"
+        >
+          <AiFillLinkedin className="h-6 w-6 hover:scale-105" />
+        </a>
+      </div>
       <label htmlFor="name" className="font-semibold text-headingFont">
         Full name
       </label>
@@ -62,17 +74,17 @@ export default function Form() {
           className="focus-border-0 w-full appearance-none border-none focus:ring-0"
         />
       </div>
-      <label htmlFor="password" className="font-semibold text-headingFont">
+      <label htmlFor="message" className="font-semibold text-headingFont">
         Message
       </label>
       <div className="relative flex items-center border">
         <textarea
           // type={`${isPasswordVisible ? "text" : "password"}`}
-          id="password"
+          id="message"
           minLength={10}
           required
           onChange={(e) => setMessage(e.target.value)}
-          className=" focus-border-0 w-full appearance-none border-none focus:ring-0"
+          className=" focus-border-0 w-full appearance-none  border-none focus:ring-0"
         />
         {/* <EyeIcon
             className="absolute right-3 h-5 w-5 cursor-pointer text-myBlue"

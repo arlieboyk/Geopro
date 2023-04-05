@@ -4,37 +4,40 @@ import { useEffect, useState } from "react";
 import { FaThumbsUp } from "react-icons/fa";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import Modal from "../../components/Contacts/Modal";
-
+import {
+  getApiEndpoint,
+  getApiEndpointWithParams,
+} from "../../../lib/dynamicUrl";
 interface User {
   id: number;
   fullName: string;
   email: string;
   message: string;
-  createdAt: Date;
-}
-interface photo {
-  albumId: number;
-  thumbnailUrl: string;
+  createdDate: Date;
 }
 
 export default function page({ params }) {
+  const [profileUrl, setProfileUrl] = useState("");
   const [user, setUser] = useState<User>();
   const [like, setLike] = useState(5);
   const [modal, setModal] = useState(false);
+  const [message, setMessage] = useState("");
+  const [isEditable, setEditable] = useState(false);
 
-  const [profileUrl, setProfileUrl] = useState("");
-  console.log("id ", params.userId);
+  const userId = params.userId;
+
+  // Get the hostname (e.g., localhost or 192.168.0.5)
+  // Get the port (e.g., 3000)
+  // Get the port (e.g., 3000)
+
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await fetch(
-        `http://localhost:3000/api/getUser/${params.userId}`,
-        {
-          next: { revalidate: 10 },
-          method: "GET",
-        }
-      );
+      const res = await fetch(`${getApiEndpoint("getUser")}/${userId}`, {
+        method: "GET",
+        next: { revalidate: 1000 },
+      });
       const data = await res.json();
-      console.log(`id:${params.userId} ${user?.fullName}`);
+      console.log("data", data);
       setUser(data);
     };
 
@@ -51,16 +54,37 @@ export default function page({ params }) {
     );
   }, []);
 
+  useEffect(() => {
+    if (user?.message) {
+      console.log("get message to setMessate state");
+      setMessage(user.message);
+    }
+  }, [user]);
+
+  const handleEdit = async (e: any) => {
+    e.preventDefault();
+    const data = { message: message, id: userId };
+    const messageJSON = JSON.stringify(data);
+    const updatedData = await fetch(`${getApiEndpoint("editUser")}`, {
+      method: "PUT",
+      body: messageJSON,
+    });
+
+    if (updatedData.ok) {
+      console.log(updatedData.json());
+    }
+  };
+
   return (
     <section className="my-12 h-full w-full">
       {/* card */}
-      <div className="shadw-sm backdrop-flter relative m-auto  w-11/12  rounded py-6  text-center backdrop-blur-lg md:w-2/3">
+      <div className="backdrop-flter relative m-auto w-11/12  rounded  py-6 text-center  shadow-sm backdrop-blur-lg md:w-2/3">
         {!user && <Loading />}
 
         {user && (
           <div
             key={user?.id}
-            className="relative mx-auto w-10/12 rounded bg-white p-4 shadow md:w-1/2"
+            className="relative mx-auto w-10/12 rounded bg-white p-4 shadow md:w-10/12"
           >
             <img
               src={profileUrl}
@@ -71,9 +95,7 @@ export default function page({ params }) {
               <h2 className="mx-3 inline-block font-semibold">
                 {user?.fullName}
               </h2>
-              <small>
-                Messages at: {new Date(user?.createdAt).toLocaleString()}
-              </small>
+              <small>Messages at: {user.createdDate?.toString()}</small>
               <BiDotsHorizontalRounded
                 onClick={() => setModal(!modal)}
                 className="absolute right-3 inline h-4 w-4 cursor-pointer text-gray-300"
@@ -81,13 +103,29 @@ export default function page({ params }) {
             </div>
 
             {/* message */}
-            <div className="m-auto  w-11/12 rounded bg-gray-900/25 py-3 px-1">
+            <form
+              onSubmit={handleEdit}
+              className="m-auto w-11/12 overflow-auto rounded py-3 px-1"
+            >
               <h2 className=" w-auto rounded-md font-normal leading-snug text-gray-900">
-                Message {user?.message}
+                <textarea
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  disabled={isEditable}
+                  rows={10}
+                  cols={50}
+                  className="block w-full appearance-none rounded-lg border border-gray-300 bg-gray-900/25 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:bg-white focus:text-gray-900 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                />
               </h2>
-            </div>
+              <button
+                type="submit"
+                className="rounded px-4 py-2 text-myBlue/80 text-white"
+              >
+                Save
+              </button>
+            </form>
 
-            <div className="relative  mt-2  h-5 w-auto  text-myBlue">
+            <div className=" relative mt-2  h-5 w-auto  ">
               <div
                 className="absolute right-4 flex cursor-pointer items-center  space-x-1"
                 onClick={() => setLike((prev) => prev + 1)}
@@ -97,7 +135,15 @@ export default function page({ params }) {
               </div>
             </div>
             {/* modal */}
-            {modal && <Modal id={user.id} />}
+            {modal && (
+              <Modal
+                isEditable={() => {
+                  setEditable(!isEditable),
+                    console.log("editable: ", isEditable);
+                }}
+                id={user.id}
+              />
+            )}
           </div>
         )}
       </div>

@@ -10,7 +10,7 @@ export async function DELETE(request: Request) {
         id: Number(id.id),
       },
     });
-    console.log(data);
+    console.log('deleted ', data);
     return NextResponse.json({ msg: `deleted ${data.fullName}` });
   } catch (error) {
     return new Response(error);

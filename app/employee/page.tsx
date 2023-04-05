@@ -2,8 +2,9 @@ import { AiFillFacebook, AiFillLinkedin } from "react-icons/ai";
 import { Employee } from "./[employeeId]/page";
 import Link from "next/link";
 import ScrollTop from "../components/ScrollTop";
+import { getApiEndpoint } from "../../lib/dynamicUrl";
 async function employee() {
-  const res = await fetch("http://localhost:3000/api/employee");
+  const res = await fetch(`${getApiEndpoint("employee")}`);
   const employees: Employee[] = await res.json();
 
   return (

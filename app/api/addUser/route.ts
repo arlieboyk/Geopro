@@ -14,8 +14,8 @@ import { NextResponse } from "next/server";
 import prisma from "../../../lib/Prisma";
 
 export async function POST(request: Request, req: NextApiRequest) {
+  /* request.json will contain the body and other request */
   const res: userTypes = await request.json();
-  // const body = req.body;
   console.log(res);
   if (res) {
     const user = await prisma.user.create({
