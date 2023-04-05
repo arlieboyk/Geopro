@@ -1,4 +1,5 @@
 import React from "react";
+import { getApiEndpoint } from "../../../lib/dynamicUrl";
 export interface Employee {
   name: string;
   id: number;
@@ -7,14 +8,13 @@ export interface Employee {
 }
 export default async function page({ params }) {
   const employeeId = params.employeeId;
-  const res = await fetch(`http://localhost:3000/api/employee/`);
+  const res = await fetch(`${getApiEndpoint("employee")}`);
   const employee: Employee[] = await res.json();
 
-  function getId(employee: any) {
+  function getId(employee: Employee) {
     console.log("id", employee.id);
     if (employee.id == employeeId) {
       console.log("got ", employee);
-      console.log("image ", employee.image);
 
       return employee;
     } else {

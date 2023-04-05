@@ -1,16 +1,24 @@
+import {
+  CodeBracketIcon,
+  InboxStackIcon,
+  Square3Stack3DIcon,
+} from "@heroicons/react/24/solid";
 import Link from "next/link";
-
+import { AiOutlineBulb } from "react-icons/ai";
+import { FaCodepen, FaLaptopCode } from "react-icons/fa";
 export default function First() {
   return (
     <>
-      <section className=" bg-[#f2f2f2] py-12 px-6 text-center lg:px-12 ">
-        <h1 className="text-4xl font-[250] leading-snug">
+      <section className=" flex flex-col bg-[#f2f2f2] py-12 px-6 text-center md:flex-row lg:px-12 ">
+        <h1 className="text-4xl font-[250] leading-snug md:w-1/2">
           We create amazing solutions with passion, dedication, and lots of
           creativity.
         </h1>
 
         {/* icon     */}
-        <p className="relative left-0 right-0 mx-auto my-6 h-24 w-24 rounded-full bg-[#00bbfd] lg:inline-block"></p>
+        <p className="m-auto h-20 w-20 rounded-full bg-myBlue p-3 md:inline">
+          <CodeBracketIcon className="h-15 w-15 font-bold text-white" />
+        </p>
       </section>
 
       <section className="bg-white py-12 px-16 text-center">
@@ -26,18 +34,18 @@ export default function First() {
         {/* process icons container */}
         <div className="flex flex-col justify-center lg:flex-row lg:justify-around ">
           <div>
-            <p className=" relative left-0 right-0 mx-auto h-20 w-20 rounded bg-[#00bbfd]"></p>
+            <AiOutlineBulb className="mx-auto h-20 w-20 text-myBlue" />
+
             <h2 className="my-4 text-xl font-bold text-gray-700">STRATEGY</h2>
           </div>
           <div>
-            <p className=" relative left-0 right-0 mx-auto h-20 w-20 rounded bg-[#00bbfd]"></p>
-
+            <FaLaptopCode className="mx-auto h-20 w-20 text-myBlue" />
             <h2 className="my-4 text-xl font-bold text-gray-700">
               DEVELOPMENT
             </h2>
           </div>
           <div>
-            <p className=" relative inset-0  m-auto  h-20 w-20 rounded bg-[#00bafd]"></p>
+            <Square3Stack3DIcon className="mx-auto h-20 w-20 text-myBlue" />
 
             <h2 className="my-4 text-xl font-bold text-gray-700">MARKETING</h2>
           </div>

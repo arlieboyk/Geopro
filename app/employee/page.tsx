@@ -1,20 +1,23 @@
 import { AiFillFacebook, AiFillLinkedin } from "react-icons/ai";
 import { Employee } from "./[employeeId]/page";
 import Link from "next/link";
+import ScrollTop from "../components/ScrollTop";
+import { getApiEndpoint } from "../../lib/dynamicUrl";
 async function employee() {
-  const res = await fetch("http://localhost:3000/api/employee");
+  const res = await fetch(`${getApiEndpoint("employee")}`);
   const employees: Employee[] = await res.json();
 
   return (
     <div>
+      <ScrollTop />
       {employees ? (
         employees.map((emp) => (
           <>
             {/* cards */}
             <div
               key={emp.id}
-              className="rounded-2 relative my-12 mx-auto  h-auto w-10/12 space-y-6  py-4 px-6 
-               text-center text-white backdrop-blur-lg backdrop-filter hover:scale-105 md:w-2/3 lg:w-2/4"
+              className="rounded-2 relative my-12 mx-auto  h-auto w-10/12 space-y-6  p-6  
+               text-center text-white backdrop-blur-lg backdrop-filter hover:scale-105 md:w-2/3 lg:w-1/3"
             >
               <Link href={`/employee/${emp.id}`}>
                 <img

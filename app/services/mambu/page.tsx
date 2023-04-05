@@ -1,16 +1,20 @@
 import Link from "next/link";
 import ScrollTop from "../../components/ScrollTop";
 
-export default function eassethetics() {
+export default function Mambu() {
   return (
     <>
       <div className="bg-[#ffffff] p-6">
         <div className="  mx-auto   transition-all   lg:w-2/3     ">
           <section className="relative left-0 right-0 m-auto flex items-center justify-center ">
             <iframe
-              src="https://www.youtube.com/embed/s3cVcN8RFSU"
-              title="Easethetics"
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/22mJ9idMPN0"
+              title="YouTube video player"
+              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
               className="h-auto min-h-[25rem] w-full lg:min-h-[35rem] "
             ></iframe>
           </section>
