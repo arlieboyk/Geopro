@@ -1,18 +1,31 @@
 "use client";
+//#region
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import Loading from "../loading";
 import Form from "../components/Contacts/Form";
 import { AiOutlineReload } from "react-icons/ai";
-import { getApiEndpoint } from "../../lib/dynamicUrl";
+import { getApiEndpoint, getApiEndpointWithParams } from "../../lib/dynamicUrl";
+//#endregion
 interface User {
   id: number;
   fullName: string;
   email: string;
   message: string;
 }
+export async function generatedMetadata({
+  params,
+}: {
+  params: { id: string };
+}) {
+  return {
+    title: "Contact Us",
+  };
+}
+
 function Contacts() {
   const [user, setUser] = useState<User[]>();
+  const [loadin, setLoading] = useState(false);
   /* to reload */
   const fetchUser = async () => {
     const res = await fetch(`${getApiEndpoint("userController")}`, {
@@ -49,24 +62,34 @@ function Contacts() {
               <th>Email</th>
             </tr>
           </thead>
-
           {user ? (
-            user.map((user) => (
-              <tbody key={user.id} className="over-flow-x-auto">
-                <Link href={`contacts/${user.id}`}>
-                  <tr className="flex justify-between py-1  px-4 font-semibold hover:scale-105">
-                    <td className="flex-1">{user.id}</td>
-                    <td className="flex-1">{user.fullName}</td>
-                    <td className="flex-1">{user.email}</td>
-                  </tr>
-                </Link>
-              </tbody>
-            ))
+            user.length > 0 ? (
+              user?.map((user) => (
+                <tbody
+                  key={user.id}
+                  className="over-flow-x-auto text-sm md:text-base"
+                >
+                  <Link href={`contacts/${user.id}`}>
+                    <tr className="flex justify-between py-1  px-4 font-semibold hover:scale-105">
+                      <td className="flex-1">{user.id}</td>
+                      <td className="flex-1">{user.fullName}</td>
+                      <td className="flex-1">{user.email}</td>
+                    </tr>
+                  </Link>
+                </tbody>
+              ))
+            ) : (
+              <>
+                <tbody className="text-center text-xl">no data found</tbody>
+              </>
+            )
           ) : (
             <tbody>
               <Loading />
             </tbody>
           )}
+
+          {/* <tbody>no data found</tbody> */}
         </table>
       </section>
     </div>

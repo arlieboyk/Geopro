@@ -2,9 +2,21 @@ import { AiFillFacebook, AiFillLinkedin } from "react-icons/ai";
 import { Employee } from "./[employeeId]/page";
 import Link from "next/link";
 import ScrollTop from "../components/ScrollTop";
-import { getApiEndpoint } from "../../lib/dynamicUrl";
+
+const apiEndpointEmployee = (endpoint: string) => {
+  if (typeof window !== "undefined") {
+    const hostname = window.location.hostname; // Get the hostname (e.g., localhost or 192.168.0.5)
+    const port = window.location.port; // Get the port (e.g., 3000)
+    console.log(`http://${hostname}:${port}/api/${endpoint}`);
+    return `http://${hostname}:${port}/api/${endpoint}`; // Construct the API endpoint URL
+  }
+  console.log("failed getting hostname and port");
+  return `http://localhost:3000/api/${endpoint}`;
+};
+
 async function employee() {
-  const res = await fetch(`${getApiEndpoint("employee")}`);
+  // const res = await fetch(`http://localhost:3000/api/employee`);
+  const res = await fetch(`${apiEndpointEmployee("employee")}`);
   const employees: Employee[] = await res.json();
 
   return (
@@ -43,5 +55,4 @@ async function employee() {
     </div>
   );
 }
-
 export default employee;

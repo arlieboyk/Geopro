@@ -1,30 +1,28 @@
 "use client";
 import React from "react";
-import { useState, useEffect } from "react";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
-import { useRouter } from "next/router";
 import { getApiEndpoint } from "../../../lib/dynamicUrl";
 interface Props {
   id: number;
   isEditable: () => void;
+  isDeleted: () => void;
 }
 
-type User = {
-  id: number;
-  fullName: string;
-  email: string;
-  message: string;
-};
-
-export default function Modal({ id, isEditable }: Props) {
-  const propsId = { props: id };
-  const jsonId = JSON.stringify(propsId);
+export default function Dropdown({ id, isEditable, isDeleted }: Props) {
+  const data = { id: id };
+  const jsonId = JSON.stringify(data);
   console.log("props.id: ", jsonId);
-  const deleteUser = () => {
-    fetch(getApiEndpoint("userController"), {
+
+  const deleteUser = async (e: any) => {
+    e.preventDefault();
+
+    const response = await fetch(getApiEndpoint("userController"), {
       method: "DELETE",
       body: jsonId,
     });
+    if (response.ok) {
+      isDeleted();
+    }
   };
 
   return (
@@ -34,7 +32,7 @@ export default function Modal({ id, isEditable }: Props) {
     >
       <div
         onClick={isEditable}
-        className="flex w-full items-center rounded p-0.5 hover:bg-indigo-400 hover:text-white"
+        className="flex w-full cursor-pointer items-center rounded p-0.5 hover:bg-indigo-400 hover:text-white"
       >
         <p className="mx-2 inline-block">Edit</p>
         <AiOutlineEdit className="inline-block  h-4 w-4" />

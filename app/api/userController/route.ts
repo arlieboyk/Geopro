@@ -1,5 +1,3 @@
-
-
 type userTypes = {
     email: string;
     fullname: string;
@@ -65,12 +63,12 @@ export async function PUT(request: Request,) {
 
 
 export async function DELETE(request: Request) {
-    const id = await request.json();
-    console.log(id);
     try {
+        const user = await request.json();
+        console.log(user);
         const data = await prisma.user.delete({
             where: {
-                id: Number(id.id),
+                id: Number(user.id),
             },
         });
         console.log('deleted ', data);

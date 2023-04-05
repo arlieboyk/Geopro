@@ -105,7 +105,7 @@ function SideBar({ sidebar, toggleSideBar, hideSideBar, ousideClick }: Props) {
 
           {sideBar ? (
             <Link onClick={toggleSideBar} className="menus" href={"/contacts"}>
-              <PhoneArrowDownLeftIcon className="h-5 w-5 " /> Contacts
+              <PhoneArrowDownLeftIcon className="h-5 w-5 " /> Contact Us
             </Link>
           ) : (
             <Link href={"/contacts"}>

@@ -8,7 +8,7 @@ export interface Employee {
 }
 export default async function page({ params }) {
   const employeeId = params.employeeId;
-  const res = await fetch(`${getApiEndpoint("employee")}`);
+  const res = await fetch(`/api/employee`);
   const employee: Employee[] = await res.json();
 
   function getId(employee: Employee) {
