@@ -4,6 +4,9 @@ export const getApiEndpoint = (endpoint: string) => {
     const port = window.location.port; // Get the port (e.g., 3000)
     console.log(`http://${hostname}:${port}/api/${endpoint}`);
     return `http://${hostname}:${port}/api/${endpoint}`; // Construct the API endpoint URL
+  } else {
+    console.log("failed getting hostname and port");
+    return `http://localhost:3000/api/employee`;
   }
 };
 

@@ -3,6 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { useRouter } from "next/router";
+import { getApiEndpoint } from "../../../lib/dynamicUrl";
 interface Props {
   id: number;
   isEditable: () => void;
@@ -18,27 +19,13 @@ type User = {
 export default function Modal({ id, isEditable }: Props) {
   const propsId = { props: id };
   const jsonId = JSON.stringify(propsId);
+  console.log("props.id: ", jsonId);
   const deleteUser = () => {
-    console.log("props.id: ", jsonId);
-    fetch(`http://localhost:3000/api/deleteUser`, {
+    fetch(getApiEndpoint("userController"), {
       method: "DELETE",
       body: jsonId,
     });
   };
-
-  const editUser = () => {
-    fetch("/api/editUser", {
-      method: "PUT",
-      body: jsonId,
-    });
-  };
-
-  // if (deletedUser == null) {
-  //   alert(deletedUser.fullName);
-  // }
-  // function redirect() {
-  //   router.push("/contacts");
-  // }
 
   return (
     <form

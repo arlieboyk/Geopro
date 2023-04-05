@@ -21,7 +21,7 @@ export default function Form() {
     let data = { fullname: fName, email: email, message: message };
     const JSONdata = JSON.stringify(data);
 
-    const response = await fetch(`${getApiEndpoint("addUser")}`, {
+    const response = await fetch(`${getApiEndpoint("userController")}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSONdata,

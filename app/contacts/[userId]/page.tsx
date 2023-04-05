@@ -2,7 +2,7 @@
 import Loading from "../loading";
 import { useEffect, useState } from "react";
 import { FaThumbsUp } from "react-icons/fa";
-import { BiDotsHorizontalRounded } from "react-icons/bi";
+import { BiArrowBack, BiDotsHorizontalRounded } from "react-icons/bi";
 import Modal from "../../components/Contacts/Modal";
 import {
   getApiEndpoint,
@@ -22,7 +22,7 @@ export default function page({ params }) {
   const [like, setLike] = useState(5);
   const [modal, setModal] = useState(false);
   const [message, setMessage] = useState("");
-  const [isEditable, setEditable] = useState(false);
+  const [isEditable, setEditable] = useState(true);
 
   const userId = params.userId;
 
@@ -32,10 +32,13 @@ export default function page({ params }) {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await fetch(`${getApiEndpoint("getUser")}/${userId}`, {
-        method: "GET",
-        next: { revalidate: 1000 },
-      });
+      const res = await fetch(
+        `${getApiEndpointWithParams("userController", userId)}`,
+        {
+          method: "GET",
+          next: { revalidate: 1000 },
+        }
+      );
       const data = await res.json();
       console.log("data", data);
       setUser(data);
@@ -65,7 +68,7 @@ export default function page({ params }) {
     e.preventDefault();
     const data = { message: message, id: userId };
     const messageJSON = JSON.stringify(data);
-    const updatedData = await fetch(`${getApiEndpoint("editUser")}`, {
+    const updatedData = await fetch(`${getApiEndpoint("userController")}`, {
       method: "PUT",
       body: messageJSON,
     });
@@ -77,6 +80,7 @@ export default function page({ params }) {
 
   return (
     <section className="my-12 h-full w-full">
+      <BiArrowBack className="absolute left-10 top-5 h-5 w-5 text-white" />
       {/* card */}
       <div className="backdrop-flter relative m-auto w-11/12  rounded  py-6 text-center  shadow-sm backdrop-blur-lg md:w-2/3">
         {!user && <Loading />}
@@ -119,7 +123,7 @@ export default function page({ params }) {
               </h2>
               <button
                 type="submit"
-                className="rounded px-4 py-2 text-myBlue/80 text-white"
+                className="mt-2 w-full bg-myBlue/80 px-4 py-2 text-white"
               >
                 Save
               </button>
@@ -130,7 +134,7 @@ export default function page({ params }) {
                 className="absolute right-4 flex cursor-pointer items-center  space-x-1"
                 onClick={() => setLike((prev) => prev + 1)}
               >
-                <FaThumbsUp className="h-4 w-4 hover:scale-105 " />{" "}
+                <FaThumbsUp className="h-4 w-4 text-myBlue hover:scale-105 " />{" "}
                 <span className="hover:scale"> {like}</span>
               </div>
             </div>

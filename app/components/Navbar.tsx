@@ -77,20 +77,20 @@ function Navbar() {
         </nav>
       )}
 
-      {hideSideBar && (
+      {/* {hideSideBar && (
         <SideBar
           ousideClick={() => console.log("")}
           toggleSideBar={handleSideBar}
           sidebar={sideBar}
           hideSideBar={handleHideSideBar}
         />
-      )}
-      {/*  <SideBar
+      )} */}
+      <SideBar
         ousideClick={() => setSideBar(false)}
         toggleSideBar={handleSideBar}
         sidebar={sideBar}
         hideSideBar={() => setHideSideBar(false)}
-      /> */}
+      />
     </header>
   );
 }

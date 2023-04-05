@@ -15,7 +15,7 @@ function Contacts() {
   const [user, setUser] = useState<User[]>();
   /* to reload */
   const fetchUser = async () => {
-    const res = await fetch(`${getApiEndpoint("getUser")}`, {
+    const res = await fetch(`${getApiEndpoint("userController")}`, {
       next: { revalidate: 10 },
       method: "GET",
     });
