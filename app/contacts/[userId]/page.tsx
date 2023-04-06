@@ -28,7 +28,7 @@ export default function page({ params }) {
   const [modal, setModal] = useState(false);
   const [message, setMessage] = useState("");
   const [isEditable, setEditable] = useState(true);
-  const [isDeleted, setIsDeleted] = useState(false);
+  const [isDeletedOrEdited, setisDeletedOrEdited] = useState(false);
 
   const userId = params.userId;
 
@@ -77,6 +77,10 @@ export default function page({ params }) {
 
     if (updatedData.ok) {
       console.log(updatedData.json());
+      setisDeletedOrEdited(true);
+      setTimeout(() => {
+        setisDeletedOrEdited(false);
+      }, 3000);
     }
   };
 
@@ -92,7 +96,7 @@ export default function page({ params }) {
   function autoGrow() {
     const textArea = inputRef.current;
     if (textArea) {
-      textArea.style.height = "5px";
+      textArea.style.height = "3px";
       textArea.style.height = textArea.scrollHeight + "px";
     }
   }
@@ -100,15 +104,15 @@ export default function page({ params }) {
   return (
     <section className="relative my-12 h-full w-full">
       <Link href={"/contacts"}>
-        <BiArrowBack className="absolute left-10 top-3 z-10 h-5 w-5 cursor-pointer text-white" />
+        <BiArrowBack className="absolute right-10 -top-8 z-10 h-6 w-6 cursor-pointer text-gray-600" />
       </Link>
 
       {/* card */}
       <div className="backdrop-flter relative m-auto w-11/12  rounded  py-6 text-center  shadow-sm backdrop-blur-lg md:w-2/3">
         {!user && <Loading />}
 
-        {isDeleted ? (
-          <VerifyModal isDeleted={isDeleted} />
+        {isDeletedOrEdited ? (
+          <VerifyModal isDeleted={isDeletedOrEdited} />
         ) : (
           user && (
             <div
@@ -120,7 +124,7 @@ export default function page({ params }) {
                 <Dropdown
                   isEditable={() => setEditable(!isEditable)}
                   id={user.id}
-                  isDeleted={() => setIsDeleted(!isDeleted)}
+                  isDeleted={() => setisDeletedOrEdited(!isDeletedOrEdited)}
                 />
               )}
 
@@ -129,14 +133,14 @@ export default function page({ params }) {
                 className="absolute -left-11 top-0  mx-0 h-10 w-10 rounded-full hover:scale-105  hover:shadow-2xl"
               />
 
-              <div className="text-left">
-                <h2 className="mx-3 inline-block font-semibold">
+              <div className="flex justify-between">
+                <h2 className="mx-3 inline-block text-sm font-semibold">
                   {user?.fullName}
                 </h2>
                 <small>Messages at: {user.createdDate?.toString()}</small>
                 <BiDotsHorizontalRounded
                   onClick={() => setModal(!modal)}
-                  className="absolute right-3 inline h-4 w-4 cursor-pointer text-gray-300"
+                  className="inline h-5 w-5 cursor-pointer text-gray-400"
                 />
               </div>
 

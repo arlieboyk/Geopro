@@ -22,6 +22,9 @@ export default function Dropdown({ id, isEditable, isDeleted }: Props) {
     });
     if (response.ok) {
       isDeleted();
+      setTimeout(() => {
+        isDeleted();
+      }, 3000);
     }
   };
 

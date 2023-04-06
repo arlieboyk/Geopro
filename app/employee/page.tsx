@@ -21,14 +21,13 @@ async function employee() {
 
   return (
     <div>
-      <ScrollTop />
       {employees ? (
         employees.map((emp) => (
           <>
             {/* cards */}
             <div
               key={emp.id}
-              className="rounded-2 relative my-12 mx-auto  h-auto w-10/12 space-y-6  p-6  
+              className="rounded-2 relative z-0 my-12 mx-auto  h-auto w-10/12 space-y-6  p-6  
                text-center text-white backdrop-blur-lg backdrop-filter hover:scale-105 md:w-2/3 lg:w-1/3"
             >
               <Link href={`/employee/${emp.id}`}>
@@ -52,6 +51,7 @@ async function employee() {
           <h1 className="animate-ping text-3xl font-bold">Loading...</h1>
         </>
       )}
+      <ScrollTop />
     </div>
   );
 }
