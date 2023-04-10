@@ -92,6 +92,7 @@ export default function page({ params }) {
       }
     }
   }, [isEditable]);
+
   /* make textarea grow based on value */
   function autoGrow() {
     const textArea = inputRef.current;
@@ -151,13 +152,14 @@ export default function page({ params }) {
               >
                 <div className=" w-auto rounded-md font-normal leading-snug text-gray-900">
                   <textarea
-                    onInput={autoGrow}
+                    // onInput={autoGrow}
                     placeholder="Send message..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     disabled={isEditable}
                     ref={inputRef}
                     rows={20}
+                    cols={50}
                     className="block w-full appearance-none rounded-sm border border-gray-200  bg-gray-300/25 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:bg-white focus:text-gray-900 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                   />
                 </div>
