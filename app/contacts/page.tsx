@@ -49,49 +49,47 @@ function Contacts() {
     <div className="w-full py-12">
       <Form />
 
-      <section className="m-auto  h-full w-11/12   md:w-2/3   ">
-        <table className="relative my-6 mx-auto max-h-40  w-full overflow-auto  rounded text-white/70 backdrop-blur-lg  backdrop-filter ">
-          <thead className="mb-6">
-            <AiOutlineReload
-              onClick={fetchUser}
-              className="m-3 h-6 w-6 cursor-pointer hover:scale-105"
-            />
-            <tr className="flex w-full justify-between p-4 font-bold ">
-              <th>Id</th>
-              <th>Name</th>
-              <th>Email</th>
-            </tr>
-          </thead>
-          {user ? (
-            user.length > 0 ? (
-              user?.map((user) => (
-                <tbody
-                  key={user.id}
-                  className="over-flow-x-auto text-sm md:text-base"
-                >
-                  <Link href={`contacts/${user.id}`}>
-                    <tr className="flex justify-between py-1  px-4 font-semibold hover:scale-105">
-                      <td className="flex-1">{user.id}</td>
-                      <td className="flex-1">{user.fullName}</td>
-                      <td className="flex-1">{user.email}</td>
-                    </tr>
-                  </Link>
-                </tbody>
-              ))
-            ) : (
-              <>
-                <tbody className="text-center text-xl">no data found</tbody>
-              </>
-            )
+      <table className="relative my-6 mx-auto h-full  max-h-40 w-11/12   overflow-auto     rounded  text-white/70 backdrop-blur-lg backdrop-filter  md:w-2/3 ">
+        <thead className="mb-6">
+          <AiOutlineReload
+            onClick={fetchUser}
+            className="m-3 h-6 w-6 cursor-pointer hover:scale-105"
+          />
+          <tr className="flex w-full justify-between p-4 font-bold ">
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        {user ? (
+          user.length > 0 ? (
+            user?.map((user, id) => (
+              <tbody
+                key={user.id}
+                className="over-flow-x-auto text-sm md:text-base"
+              >
+                <Link href={`contacts/${user.id}`}>
+                  <tr className="flex justify-between py-1  px-4 font-semibold hover:scale-105">
+                    <td className="flex-1">{id + 1}</td>
+                    <td className="flex-1">{user.fullName}</td>
+                    <td className="flex-1">{user.email}</td>
+                  </tr>
+                </Link>
+              </tbody>
+            ))
           ) : (
-            <tbody>
-              <Loading />
-            </tbody>
-          )}
+            <>
+              <tbody className="text-center text-xl">no data found</tbody>
+            </>
+          )
+        ) : (
+          <tbody>
+            <Loading />
+          </tbody>
+        )}
 
-          {/* <tbody>no data found</tbody> */}
-        </table>
-      </section>
+        {/* <tbody>no data found</tbody> */}
+      </table>
     </div>
   );
 }

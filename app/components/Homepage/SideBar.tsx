@@ -11,42 +11,45 @@ import {
 } from "@heroicons/react/24/solid";
 import { useState, useRef, useEffect } from "react";
 type Props = {
-  sidebar: boolean;
+  sideBar: boolean;
+  IsSidebarHidden: boolean;
   toggleSideBar: () => void;
   hideSideBar: () => void;
-  ousideClick: () => void;
 };
 
-function SideBar({ sidebar, toggleSideBar, hideSideBar, ousideClick }: Props) {
-  const [sideBar, setSideBar] = useState(sidebar);
+function SideBar({
+  sideBar,
+  toggleSideBar,
+  hideSideBar,
+  IsSidebarHidden,
+}: Props) {
+  // const [sideBar, setSideBar] = useState(sidebar);
 
+  console.log(`inside sidebar:, ${sideBar ? "true" : "false"}`);
   if (typeof window !== "undefined") {
     const content = [document.getElementById("content")];
-    console.log("inside sidebar: ", sideBar);
 
-    useEffect(() => {
-      setSideBar(sidebar);
-    }, [sidebar]);
-
-    useEffect(() => {
-      for (let element of content) {
-        if (sideBar) {
-          element?.classList.add("pointer-events-none");
-        } else {
-          element?.classList.remove("pointer-events-none");
-        }
-      }
-    }, [sideBar]);
+    // useEffect(() => {
+    //   if (sideBar) {
+    //     content[0]?.classList.add("pointer-events-none");
+    //     content[0]?.classList.add("overflow-hidden");
+    //   } else {
+    //     content[0]?.classList.remove("pointer-events-none");
+    //   }
+    // }, [sideBar]);
   }
 
   return (
     <>
       <div
         // ref={refOne}
-        className={`absolute top-0 left-0 z-[99] flex  h-screen w-2/4 -translate-x-full flex-col  bg-slate-800  bg-opacity-90 py-2 
-        px-2 text-white transition-all ease-linear ${
+        className={`absolute top-0 left-0 z-[99] flex    h-screen w-2/4 -translate-x-full flex-col bg-slate-800 bg-opacity-90  py-2  px-2 md:translate-x-0 
+        
+        ${IsSidebarHidden ? "hidden" : ""}
+
+        text-white transition-all ease-linear md:translate-x-0 ${
           sideBar
-            ? " w-2/4  translate-x-0  md:w-1/4 lg:w-1/6   "
+            ? " w-2/4 translate-x-0  sm:w-1/3  md:w-1/4 lg:w-1/6   "
             : "w-auto -translate-x-full"
         } `}
       >

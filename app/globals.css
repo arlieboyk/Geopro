@@ -23,13 +23,16 @@
 .text-section {
   opacity: 0;
   transition: all;
-  transform: translate(100px);
+  /* transform: translate(100px); */
+  @apply -translate-x-full;
+
   transition: 1s;
 }
 
 .show {
   opacity: 1;
-  transform: translate(0);
+  /* transform: translate(0); */
+  @apply translate-x-0 delay-200;
 }
 
 .cards {

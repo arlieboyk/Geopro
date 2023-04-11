@@ -187,10 +187,11 @@ export default function page({ params }) {
     </section>
   );
 }
+
 interface verifyProp {
   isDeleted: boolean;
 }
-const VerifyModal = ({ isDeleted }: verifyProp) => (
+const VerifyModal = ({ isDeleted }) => (
   <>
     {isDeleted ? (
       <div className="mx-auto w-1/2 rounded bg-white py-6">
