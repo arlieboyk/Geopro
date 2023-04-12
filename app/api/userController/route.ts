@@ -28,18 +28,18 @@ export async function POST(request: Request, req: NextApiRequest) {
                 email: res.email,
             },
         });
-        return NextResponse.json({ msg: `Created ${user.email}` });
+        return NextResponse.json(`Created ${user.email}`);
     }
     return NextResponse.json({ msg: `Server Error` });
 }
 
 
 
+/* EDIT USER */
 interface User {
     id: number
     message: string
 }
-/* EDIT USER */
 export async function PUT(request: Request,) {
     try {
         const user: User = await request.json()

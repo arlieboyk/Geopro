@@ -118,7 +118,7 @@ function Avengers() {
       <div className="mx-auto grid w-full grid-cols-1 gap-y-16 gap-x-6   sm:grid-cols-2 lg:w-2/3 lg:grid-cols-3 xl:grid-cols-4  ">
         {/* cards */}
         {avengers.map((employee) => (
-          <Link href={`/employee/${employee.id}`}>
+          <Link key={employee.id} href={`/employee/${employee.id}`}>
             <div
               key={employee.name}
               className=" relative mx-auto flex h-[15rem] w-full flex-col items-center justify-center rounded border-t-4 border-[#0088cc] bg-white text-center shadow md:w-11/12  "
