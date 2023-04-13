@@ -70,7 +70,7 @@ function Contacts() {
               >
                 <Link href={`contacts/${user.id}`}>
                   <tr className="flex justify-between py-1  px-4 font-semibold hover:scale-105">
-                    <td className="flex-1">{id + 1}</td>
+                    <td className="flex-1">{user.id}</td>
                     <td className="flex-1">{user.fullName}</td>
                     <td className="flex-1">{user.email}</td>
                   </tr>
@@ -87,8 +87,6 @@ function Contacts() {
             <Loading />
           </tbody>
         )}
-
-        {/* <tbody>no data found</tbody> */}
       </table>
     </div>
   );

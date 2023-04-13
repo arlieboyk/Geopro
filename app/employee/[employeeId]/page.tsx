@@ -26,7 +26,7 @@ export default async function page({ params }) {
     <section className="h-full w-full ">
       {employee ? (
         /* card */
-        <div className="md:1/3 mx-auto my-12 flex h-auto w-10/12 flex-col items-center justify-center space-y-2 rounded-sm py-12 px-4 text-black backdrop-blur-lg backdrop-filter hover:scale-105 lg:w-1/3">
+        <div className="md:1/3 mx-auto my-12 flex h-auto w-10/12 flex-col items-center justify-center space-y-2 rounded-sm py-12 px-4 text-black backdrop-blur-lg backdrop-filter transition-transform hover:scale-105 lg:w-1/3">
           <img
             src={employee.find(getId)?.image}
             className="h-24 w-24 rounded-full"

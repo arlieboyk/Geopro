@@ -63,8 +63,8 @@ function Navbar() {
               <button
                 className=" space-y-1 hover:scale-105"
                 onClick={() => {
-                  handleHideSideBar();
                   handleSideBar();
+                  handleHideSideBar();
                 }}
               >
                 <p className="h-0.5 w-6  bg-gray-600"></p>

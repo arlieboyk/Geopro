@@ -25,39 +25,17 @@ function SideBar({
 }: Props) {
   // const [sideBar, setSideBar] = useState(sidebar);
 
-  console.log(`inside sidebar:, ${sideBar ? "true" : "false"}`);
-  if (typeof window !== "undefined") {
-    const content = [document.getElementById("content")];
-
-    // useEffect(() => {
-    //   if (sideBar) {
-    //     content[0]?.classList.add("pointer-events-none");
-    //     content[0]?.classList.add("overflow-hidden");
-    //   } else {
-    //     content[0]?.classList.remove("pointer-events-none");
-    //   }
-    // }, [sideBar]);
-  }
+  console.log(`inside sidebar:${sideBar ? "true" : "false"}`);
 
   return (
     <>
       <div
-        // ref={refOne}
-        className={`absolute top-0 left-0 z-[99] flex    h-screen w-2/4 -translate-x-full flex-col bg-slate-800 bg-opacity-90  py-2  px-2 md:translate-x-0 
-        
-        ${IsSidebarHidden ? "hidden" : ""}
-
-        text-white transition-all ease-linear md:translate-x-0 ${
-          sideBar
-            ? " w-2/4 translate-x-0  sm:w-1/3  md:w-1/4 lg:w-1/6   "
-            : "w-auto -translate-x-full"
-        } `}
+        className={`absolute top-0 h-screen  w-2/4 min-w-min max-w-[12rem] bg-slate-800 px-1 py-5 text-gray-200 transition-all md:w-1/4 lg:w-1/6
+     ${sideBar ? "translate-x-0" : "-translate-x-full"} `}
       >
         <div className="relative hidden h-12 w-full md:block">
           <p
-            className={` absolute right-0   flex items-center  justify-center ${
-              sideBar ? "" : "left-0"
-            } top-0 bottom-0 m-auto    h-8 w-8 rounded-full bg-gray-700 hover:bg-gray-900 hover:text-white`}
+            className={`absolute right-0 top-0 bottom-0  m-auto flex h-8 w-8  items-center justify-center rounded-full bg-gray-700 hover:bg-gray-900 hover:text-white`}
             onClick={toggleSideBar}
           >
             <ChevronDoubleRightIcon
@@ -82,37 +60,50 @@ function SideBar({
             </Link>
           ) : (
             <Link href={"/"}>
-              <HomeIcon className="menus-icon" />
+              <div className="group relative">
+                <ToolTip text="Home" />
+                <HomeIcon className="menus-icon" />
+              </div>
             </Link>
           )}
 
           {sideBar ? (
-            <Link onClick={toggleSideBar} href={"/services"} className="menus">
+            <Link href={"/services"} className="menus">
               <WrenchIcon className="h-5 w-5 " /> Services
             </Link>
           ) : (
-            <Link onClick={toggleSideBar} href={"/services"}>
-              <WrenchIcon className="menus-icon" />
+            <Link href={"/services"}>
+              <div className="group relative">
+                <ToolTip text="Services" />
+
+                <WrenchIcon className="menus-icon" />
+              </div>
             </Link>
           )}
 
           {sideBar ? (
-            <Link onClick={toggleSideBar} className="menus" href={"/employee"}>
+            <Link className="menus" href={"/employee"}>
               <UserGroupIcon className="h-5 w-5 " /> Employee
             </Link>
           ) : (
-            <Link onClick={toggleSideBar} href={"/employee"}>
-              <UserGroupIcon className="menus-icon" />
+            <Link href={"/employee"}>
+              <div className="group relative">
+                <UserGroupIcon className="menus-icon" />
+                <ToolTip text="Employee" />
+              </div>
             </Link>
           )}
 
           {sideBar ? (
-            <Link onClick={toggleSideBar} className="menus" href={"/contacts"}>
+            <Link className="menus" href={"/contacts"}>
               <PhoneArrowDownLeftIcon className="h-5 w-5 " /> Contact Us
             </Link>
           ) : (
             <Link href={"/contacts"}>
-              <PhoneArrowDownLeftIcon className="menus-icon" />
+              <div className="group relative">
+                <PhoneArrowDownLeftIcon className="menus-icon" />
+                <ToolTip text="Cotnact Us" />
+              </div>
             </Link>
           )}
           {/* services */}
@@ -121,7 +112,7 @@ function SideBar({
               <summary className="menus list-none rounded-md px-4 py-2 hover:bg-slate-200 hover:font-bold hover:text-slate-600 ">
                 <WrenchScrewdriverIcon className="inline h-5 w-5" />
                 Services
-                <ChevronDownIcon className="inline h-4 w-4 text-lg hover:font-bold  " />
+                <ChevronDownIcon className="inline h-5 w-5 text-lg hover:font-bold  " />
               </summary>
               <div className="mt-2 w-full space-y-3">
                 <Link
@@ -157,7 +148,12 @@ function SideBar({
               </div>
             </details>
           ) : (
-            <WrenchScrewdriverIcon className="menus-icon" />
+            <Link href={"/services"}>
+              <div className="group relative">
+                <WrenchScrewdriverIcon className="menus-icon" />
+                <ToolTip text="Services" />
+              </div>
+            </Link>
           )}
         </div>
         {!sideBar && (
@@ -174,3 +170,15 @@ function SideBar({
 }
 
 export default SideBar;
+
+type ToolTipTypes = {
+  text: string;
+};
+
+function ToolTip({ text }: ToolTipTypes) {
+  return (
+    <p className="absolute left-14 top-1 m-auto my-auto  w-auto origin-left  scale-0  rounded bg-[#1b2737] px-2 py-1  text-center text-white transition-all duration-200 group-hover:scale-100">
+      {text}
+    </p>
+  );
+}
