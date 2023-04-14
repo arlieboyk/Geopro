@@ -8,14 +8,14 @@ export default function CarouselSection() {
 
   // onmouseover = (event) => {};
   return (
-    <section className="  ">
-      <Carousel className="text-gray- h-screen w-full text-gray-900 backdrop-blur backdrop-filter">
-        <div className="flex w-full flex-col items-center justify-center px-2 text-center dark:bg-gray-700 dark:text-white">
+    <section className="h-screen  w-full backdrop-blur backdrop-filter ">
+      <Carousel indicators={false} className=" h-4/5 w-full text-gray-900 ">
+        <div className="flex  w-full flex-col items-center justify-center px-2 text-center dark:bg-gray-700 dark:text-white">
           <h2 className="text-3xl font-bold">Geopro Global Solutions</h2>
-          <h1 className="text-4xl font-bold ">
+          <h1 className="text-4xl font-bold md:text-lg lg:text-xl ">
             Enterprise Resource Planning (ERP)
           </h1>
-          <p className="rounded-md bg-black py-2 px-4 text-center text-white opacity-50">
+          <p className="rounded-md bg-black py-2 px-4 text-center text-white opacity-50 md:text-lg lg:text-xl">
             Our ERP Services are suitable for companies that require
             implementation of modern technologies to run their business
             effectively.
@@ -25,20 +25,21 @@ export default function CarouselSection() {
         </div>
         <div className="text-cente flex h-full flex-col items-center justify-center bg-opacity-50 px-2 text-center  dark:bg-gray-700 dark:text-white">
           <h2 className="text-3xl">-Mobile-</h2>
-          <h1 className="rounded-md bg-black p-2 text-7xl font-bold opacity-50">
+          <h1 className="rounded-md bg-black p-2  text-7xl font-bold text-white opacity-50">
             IOS / ANDROID
           </h1>
         </div>
         <div className="flex h-full flex-col items-center justify-center  bg-opacity-50 px-2 text-center dark:bg-gray-700 dark:text-white">
-          <h2 className="text-3xl font-bold">Geopro Global Solutions</h2>
-          <h1 className="text-4xl font-bold">
+          <h2 className="text-3xl font-extrabold">Geopro Global Solutions</h2>
+          <h1 className="text-4xl font-bold md:text-lg lg:text-xl">
             Enterprise Resource Planning (ERP)
           </h1>
-          <p className="rounded-md bg-black py-2 px-4 text-center text-white opacity-50">
+          <p className="rounded-md bg-black py-2 px-4 text-center text-white opacity-50 md:text-lg lg:text-xl">
             Our ERP Services are suitable for companies that require
             implementation of modern technologies to run their business
-            effectively. We build, customize, and ingrate complex software
-            solutions and business applications.
+            effectively.
+            <br /> We build, customize, and ingrate complex software solutions
+            and business applications.
           </p>
         </div>
       </Carousel>

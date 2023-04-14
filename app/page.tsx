@@ -14,7 +14,7 @@ export default function Home() {
 
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 1000);
   }, []);
 
   if (loading) return <Loading />;
@@ -23,10 +23,8 @@ export default function Home() {
     <>
       <Carousel1 />
       <Development />
-
       <Avengers />
-
-      <ScrollTop></ScrollTop>
+      <ScrollTop />
     </>
   );
 }
